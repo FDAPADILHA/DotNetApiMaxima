@@ -16,6 +16,7 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 - Swashbuckle.AspNetCore.Swagger 7.2.0
 - Swashbuckle.AspNetCore.SwaggerGen 7.2.0
 - Swashbuckle.AspNetCore.SwaggerUI 7.2.0
+- Microsoft.EntityFrameworkC 9.0.0
 
 ## Funcionalidades Planejadas
 - Gestão de Produtos (CRUD)
