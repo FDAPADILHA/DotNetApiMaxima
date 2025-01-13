@@ -1,25 +1,65 @@
+using DotNetApiMaxima.Config;
+using DotNetApiMaxima.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+// Abre o navegador
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<Contexto>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+app.UseSwagger();
+
+app.MapPost("AdicionarProduto", async (Produto produto, Contexto contexto) =>
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+    if (produto == null)
+    {
+        return Results.BadRequest("Produto não pode ser nulo.");
+    }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+    if (string.IsNullOrEmpty(produto.Coddepto) || produto.Preco <= 0)
+    {
+        return Results.BadRequest("Código do departamento é obrigatório e o preço deve ser maior que zero.");
+    }
 
-app.UseRouting();
+    if (string.IsNullOrEmpty(produto.Status))
+    {
+        return Results.BadRequest("O Status do produto A - Ativo ou I - Inativo é obrigatório");
+    }
 
-app.UseAuthorization();
+    contexto.Produto.Add(produto);
+    await contexto.SaveChangesAsync();
 
-app.MapRazorPages();
+    return Results.Ok($"Produto com Codprod {Codprod} foi Cadastrado com sucesso.");
+});
+
+app.MapPost("ExcluirProduto/{Codprod}", async (string Codprod, Contexto contexto) =>
+{
+    var produto = await contexto.Produto.FirstOrDefaultAsync(p => p.Codprod == Codprod);
+
+    if (produto != null)
+    {
+        // Atualiza o Codoperacao para 2 antes de excluir
+        produto.Codoperacao = 2;
+        contexto.Produto.Update(produto);
+        await contexto.SaveChangesAsync();
+
+        // Agora remove o produto
+        contexto.Produto.Remove(produto);
+        await contexto.SaveChangesAsync();
+
+        return Results.Ok($"Produto com Codprod {Codprod} foi excluído com sucesso.");
+    }
+
+    return Results.NotFound($"Produto com Codprod {Codprod} não encontrado.");
+});
+
+
+app.UseSwaggerUI();
 
 app.Run();

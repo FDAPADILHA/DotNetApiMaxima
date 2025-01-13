@@ -1309,11 +1309,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\filipe.padilha\\source\\repos\\DotNetApiMaxima\\DotNetApiMaxima\\DotNetApiMaxima.csproj",
+      "projectUniqueName": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\DotNetApiMaxima.csproj",
       "projectName": "DotNetApiMaxima",
-      "projectPath": "C:\\Users\\filipe.padilha\\source\\repos\\DotNetApiMaxima\\DotNetApiMaxima\\DotNetApiMaxima.csproj",
+      "projectPath": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\DotNetApiMaxima.csproj",
       "packagesPath": "C:\\Users\\filipe.padilha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\filipe.padilha\\source\\repos\\DotNetApiMaxima\\DotNetApiMaxima\\obj\\",
+      "outputPath": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

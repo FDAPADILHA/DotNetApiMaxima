@@ -28,3 +28,16 @@ C:\Users\filipe.padilha\source\repos\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\n
 C:\Users\filipe.padilha\source\repos\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.pdb
 C:\Users\filipe.padilha\source\repos\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.genruntimeconfig.cache
 C:\Users\filipe.padilha\source\repos\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\ref\DotNetApiMaxima.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.csproj.AssemblyReference.cache
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.GeneratedMSBuildEditorConfig.editorconfig
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.AssemblyInfoInputs.cache
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.AssemblyInfo.cs
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.csproj.CoreCompileInputs.cache
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.MvcApplicationPartsAssemblyInfo.cs
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.MvcApplicationPartsAssemblyInfo.cache
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.RazorAssemblyInfo.cache
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.RazorAssemblyInfo.cs
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.sourcelink.json
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\refint\DotNetApiMaxima.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.pdb
