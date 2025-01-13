@@ -9,8 +9,8 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 - ASP.NET Core MVC
 - .NET 8.0
 - Banco de Dados Oracle
-  
-# Pacotes utilizados:
+
+### Pacotes utilizados:
 
 - Oracle.EntityFrameworkCore 9.23.60
 - Swashbuckle.AspNetCore.Swagger 7.2.0
@@ -51,7 +51,7 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
           |                           |
           |     +-----------------+   |
           +---->|   Serviço API   |---+
-                | (.NET Core 5.0+)|
+                | (.NET Core 8.0) |
                 +-----------------+
                           |
                           |
