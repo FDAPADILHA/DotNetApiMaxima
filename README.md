@@ -62,6 +62,140 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 
 ```
 
+# Documentação da API
+
+## Descrição
+Esta API permite gerenciar produtos, incluindo funcionalidades de adicionar, listar, consultar e excluir produtos. Este documento descreve os endpoints disponíveis para consumo.
+
+---
+
+## Endpoints Disponíveis
+
+### 1. Adicionar Produto
+**URL:** `POST /api/Produto/AdicionarProduto`
+
+**Descrição:** Adiciona um novo produto no sistema.
+
+**Campos Obrigatórios:**
+- `Codprod` (string): Código único do produto.
+- `Descricao` (string): Descrição do produto.
+- `Coddepto` (string): Código do departamento.
+- `Preco` (decimal): Preço do produto.
+- `Status` (string): Status do produto. Valores permitidos:
+  - `A`: Ativo.
+  - `I`: Inativo.
+
+**Exemplo de Requisição:**
+```json
+{
+  "Codprod": "1234",
+  "Descricao": "Produto Exemplo",
+  "Coddepto": "001",
+  "Preco": 50.0,
+  "Status": "A"
+}
+```
+
+**Exemplo de Resposta (201):**
+```json
+{
+  "Codprod": "1234",
+  "Descricao": "Produto Exemplo",
+  "Coddepto": "001",
+  "Preco": 50.0,
+  "Status": "A"
+}
+```
+
+---
+
+### 2. Listar Produtos
+**URL:** `GET /api/Produto/ListarProdutos`
+
+**Descrição:** Retorna todos os produtos cadastrados.
+
+**Exemplo de Resposta (200):**
+```json
+[
+  {
+    "Codprod": "1234",
+    "Descricao": "Produto Exemplo",
+    "Coddepto": "001",
+    "Preco": 50.0,
+    "Status": "A"
+  },
+  {
+    "Codprod": "5678",
+    "Descricao": "Outro Produto",
+    "Coddepto": "002",
+    "Preco": 75.5,
+    "Status": "I"
+  }
+]
+```
+
+**Exemplo de Resposta (404):**
+```json
+"Nenhum produto cadastrado."
+```
+
+---
+
+### 3. Consultar Produto por Código
+**URL:** `GET /api/Produto/ConsultarProduto/{Codprod}`
+
+**Descrição:** Retorna as informações de um produto específico.
+
+**Parâmetro Obrigatório:**
+- `Codprod` (string): Código do produto a ser consultado.
+
+**Exemplo de Resposta (200):**
+```json
+{
+  "Codprod": "1234",
+  "Descricao": "Produto Exemplo",
+  "Coddepto": "001",
+  "Preco": 50.0,
+  "Status": "A"
+}
+```
+
+**Exemplo de Resposta (404):**
+```json
+"Produto com Codprod 1234 não encontrado."
+```
+
+---
+
+### 4. Excluir Produto
+**URL:** `POST /api/Produto/ExcluirProduto/{Codprod}`
+
+**Descrição:** Exclui um produto específico do sistema.
+
+**Parâmetro Obrigatório:**
+- `Codprod` (string): Código do produto a ser excluído.
+
+**Exemplo de Resposta (200):**
+```json
+"Produto com Codprod 1234 foi excluído com sucesso."
+```
+
+**Exemplo de Resposta (404):**
+```json
+"Produto com Codprod 1234 não encontrado."
+```
+
+---
+
+## Observações
+- Os campos `id` e `codoperacao` são definidos como `null` automaticamente e não devem ser enviados pelo usuário.
+- Certifique-se de utilizar os valores permitidos para o campo `Status`.
+- Todas as respostas seguem o formato JSON.
+
+Se houver dúvidas, entre em contato com o suporte da API.
+
+
+
 ## Instalação
 
 Link para Download -> https://www.oracle.com/br/database/technologies/xe-downloads.html
