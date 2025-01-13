@@ -5,18 +5,25 @@ https://via.placeholder.com/900x300.png?text=Cadastro+de+Produtos+CRUD
 ## Visão Geral
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
-A solução foi desenvolvida com:
-- **Frontend**: Angular Framework.
-- **Backend**: .NET Core (dois microsserviços).
-- **Banco de Dados**: Oracle.
+## Tecnologias Utilizadas
+- ASP.NET Core MVC
+- .NET 8.0
+- Banco de Dados Oracle
+- APIs RESTful
+
+## Funcionalidades Planejadas
+- Gestão de Produtos (CRUD)
+- Integração com serviços RESTful
+- Autenticação e autorização
+- Otimização para escalabilidade futura
 
 ---
 
 ## Requisitos Técnicos
-- **Frontend**: Desenvolvido em Angular.
+- **Frontend**: ASP .NET CORE.
 - **Backend**: Dois microsserviços:
   - Web Service: .NET Core MVC.
-  - Serviço API: .NET Core 5.0 ou superior.
+  - Serviço API: .NET Core 8.0 ou versões anteriores.
 - **Banco de Dados**: Oracle para persistência de informações.
 - **Adicionais**:
   - Documentação detalhada com scripts de instalação.
@@ -31,8 +38,8 @@ A solução foi desenvolvida com:
 
 ```plaintext
 +---------------------+          +-----------------+
-|   Frontend Angular  |<-------->|   Web Service   |
-|  (Módulo Produto)   |          | (.NET Core MVC) |
+|       Frontend      |<-------->|   Web Service   |
+| (ASP.NET Core MVC)  |          | (.NET Core MVC) |
 +---------------------+          +-----------------+
           |                           |
           |                           |
