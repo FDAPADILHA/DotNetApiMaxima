@@ -1,21 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DotNetApiMaxima.Config
 {
     public class Contexto : DbContext
     {
-        public Contexto(DbContextOptions<Contexto> options) : base(options)
+        private readonly IConfiguration _configuration;
+
+        public Contexto(DbContextOptions<Contexto> options, IConfiguration configuration)
+            : base(options)
         {
-            // Remova Database.EnsureCreated();
+            _configuration = configuration;
         }
 
         public DbSet<Models.Produto> Produto { get; set; }
 
+        //Adicionei a injeção do IConfiguration no construtor do Contexto. Isso permite que o contexto acesse as configurações definidas no appsettings.json
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseOracle("User Id=SYSTEM;Password=adm123;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST =localhost)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=XE)));");
+                var connectionString = _configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseOracle(connectionString);
             }
         }
     }

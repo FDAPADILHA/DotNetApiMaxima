@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\DotNetApiMaxima"
+    "\\DotNetApiMaxima",
+    "\\DotNetApiMaxima\\Config"
   ],
-  "SelectedNode": "\\DotNetApiMaxima.sln",
+  "SelectedNode": "\\DotNetApiMaxima\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
