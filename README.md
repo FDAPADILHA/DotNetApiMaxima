@@ -6,7 +6,7 @@ https://via.placeholder.com/900x300.png?text=Cadastro+de+Produtos+CRUD
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
 ## Tecnologias Utilizadas
-- ASP.NET Core MVC
+- Angular 8.0
 - .NET 8.0
 - Banco de Dados Oracle
 
@@ -27,9 +27,9 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 ---
 
 ## Requisitos Técnicos
-- **Frontend**: ASP .NET CORE.
+- **Frontend**: Angular 8.0
 - **Backend**: Dois microsserviços:
-  - Web Service: .NET Core MVC.
+  - Web Service: Angular 8.0
   - Serviço API: .NET Core 8.0 ou versões anteriores.
 - **Banco de Dados**: Oracle para persistência de informações.
 - **Adicionais**:
@@ -46,7 +46,7 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 ```plaintext
 +---------------------+          +-----------------+
 |       Frontend      |<-------->|   Web Service   |
-| (ASP.NET Core MVC)  |          | (.NET Core MVC) |
+|      Angular 8.0    |          |   Angular 8.0   |
 +---------------------+          +-----------------+
           |                           |
           |                           |
