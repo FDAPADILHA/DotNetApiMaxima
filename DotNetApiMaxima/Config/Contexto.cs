@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DotNetApiMaxima.Models;
+using DotNetApiMaxima.Config;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace DotNetApiMaxima.Config
@@ -13,9 +15,9 @@ namespace DotNetApiMaxima.Config
             _configuration = configuration;
         }
 
-        public DbSet<Models.Produto> Produto { get; set; }
+        public DbSet<Produto> Produto { get; set; }
 
-        //Adicionei a injeção do IConfiguration no construtor do Contexto. Isso permite que o contexto acesse as configurações definidas no appsettings.json
+        // Configuração da conexão com o banco de dados
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -23,6 +25,15 @@ namespace DotNetApiMaxima.Config
                 var connectionString = _configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseOracle(connectionString);
             }
+        }
+
+        // Configuração dos mapeamentos
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Aplica as configurações do Produto
+            modelBuilder.ApplyConfiguration(new ProdutoMapping());
         }
     }
 }
