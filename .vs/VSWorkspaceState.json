@@ -3,6 +3,7 @@
     "",
     "\\DotNetApiMaxima",
     "\\DotNetApiMaxima\\Config",
+    "\\DotNetApiMaxima\\Controllers",
     "\\DotNetApiMaxima\\Models"
   ],
   "SelectedNode": "\\DotNetApiMaxima.sln",
