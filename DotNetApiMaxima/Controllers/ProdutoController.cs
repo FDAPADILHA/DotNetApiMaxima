@@ -17,7 +17,10 @@ namespace DotNetApiMaxima.Controllers
             _contexto = contexto;
         }
 
-        // POST: api/Produto/AdicionarProduto
+        /*########################################################################################################################################################
+        *******************************************************   // POST: api/Produto/AdicionarProduto   *******************************************************
+        ########################################################################################################################################################*/
+
         [HttpPost("AdicionarProduto")]
         [ProducesResponseType(200, Type = typeof(string))]
         [ProducesResponseType(500, Type = typeof(string))]
@@ -57,9 +60,13 @@ namespace DotNetApiMaxima.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
+                return StatusCode(500, new { Message = "Erro interno no servidor. Considere contatar o Suporte à API", Details = ex.Message });
             }
         }
+
+        /*########################################################################################################################################################
+        *******************************************************   // DELETE: api/Produto/ExcluirProduto   *******************************************************
+        ########################################################################################################################################################*/
 
         //Para tratar vários produtos a serem excluídos
         public class ProdutoExcluirRequest
@@ -67,7 +74,6 @@ namespace DotNetApiMaxima.Controllers
             public string Codprod { get; set; }
         }
 
-        // Endpoint para excluir um ou mais produtos
         [HttpDelete("ExcluirProduto")]
         [ProducesResponseType(200, Type = typeof(string))]
         [ProducesResponseType(500, Type = typeof(string))]
@@ -75,24 +81,21 @@ namespace DotNetApiMaxima.Controllers
         {
             try
             {
-                // Verifica se a lista de códigos foi fornecida
+
                 if (produtos == null || !produtos.Any())
                 {
                     return BadRequest("Nenhum código de produto fornecido.");
                 }
 
-                // Busca os produtos na base de dados
                 var produtosEncontrados = await _contexto.Produto
                     .Where(p => produtos.Select(pr => pr.Codprod).Contains(p.Codprod))
                     .ToListAsync();
 
-                // Verifica se os produtos foram encontrados
                 if (!produtosEncontrados.Any())
                 {
                     return NotFound("Nenhum dos produtos informados foi encontrado.");
                 }
 
-                // Atualiza os produtos antes de excluí-los
                 foreach (var produto in produtosEncontrados)
                 {
                     produto.Codoperacao = 2;
@@ -100,11 +103,9 @@ namespace DotNetApiMaxima.Controllers
                 }
                 await _contexto.SaveChangesAsync();
 
-                // Exclui os produtos
                 _contexto.Produto.RemoveRange(produtosEncontrados);
-                await _contexto.SaveChangesAsync(); // Salva as exclusões
+                await _contexto.SaveChangesAsync();
 
-                // Cria a mensagem de sucesso com base no número de produtos excluídos
                 string mensagem;
                 if (produtosEncontrados.Count == 1)
                 {
@@ -119,12 +120,14 @@ namespace DotNetApiMaxima.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
+                return StatusCode(500, new { Message = "Erro interno no servidor. Considere contatar o Suporte à API", Details = ex.Message });
             }
         }
 
+        /*########################################################################################################################################################
+        *******************************************************   // GET: api/Produto/ListarProdutos   *******************************************************
+        ########################################################################################################################################################*/
 
-        // GET: api/Produto/ListarProdutos
         [HttpGet("ListarProdutos")]
         [ProducesResponseType(200, Type = typeof(string))]
         [ProducesResponseType(500, Type = typeof(string))]
@@ -156,22 +159,34 @@ namespace DotNetApiMaxima.Controllers
             }
         }
 
+        /*########################################################################################################################################################
+        *******************************************************   // GET: api/Produto/ConsultarProduto   *******************************************************
+        ########################################################################################################################################################*/
 
-        // GET: api/Produto/ConsultarProduto/{Codprod}
-        [HttpGet("ConsultarProduto/{Codprod}")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(500, Type = typeof(string))]
-        public async Task<IActionResult> ConsultarProduto(string Codprod)
+        public class ProdutoConsultarRequest
         {
-            if (string.IsNullOrWhiteSpace(Codprod))
-            {
-                return BadRequest(new { Message = "O parâmetro Codprod é obrigatório." });
-            }
+            public string Codprod { get; set; }
+        }
 
+        // GET: api/Produto/ConsultarProdutos
+        [HttpGet("ConsultarProdutos")]
+        [ProducesResponseType(200, Type = typeof(List<object>))]
+        [ProducesResponseType(400, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
+        public async Task<IActionResult> ConsultarProdutos([FromBody] List<ProdutoConsultarRequest> produtos)
+        {
             try
             {
-                var produto = await _contexto.Produto
-                    .Where(p => p.Codprod.Trim() == Codprod.Trim())
+
+                if (produtos == null || !produtos.Any())
+                {
+                    return BadRequest(new { Message = "Nenhum código de produto fornecido." });
+                }
+
+                var codigos = produtos.Select(p => p.Codprod.Trim()).ToList();
+
+                var produtosEncontrados = await _contexto.Produto
+                    .Where(p => codigos.Contains(p.Codprod))
                     .Select(p => new
                     {
                         p.Codprod,
@@ -180,18 +195,23 @@ namespace DotNetApiMaxima.Controllers
                         p.Preco,
                         p.Status
                     })
-                    .FirstOrDefaultAsync();
+                    .ToListAsync();
 
-                if (produto != null)
+                if (!produtosEncontrados.Any())
                 {
-                    return Ok(produto);
+                    return NotFound(new { Message = "Nenhum dos produtos informados foi encontrado." });
                 }
 
-                return NotFound(new { Message = $"Produto com Codprod {Codprod} não encontrado." });
+                return Ok(produtosEncontrados);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
+
+                return StatusCode(500, new
+                {
+                    Message = "Erro interno no servidor. Considere contatar o Suporte à API.",
+                    Details = ex.Message
+                });
             }
         }
 

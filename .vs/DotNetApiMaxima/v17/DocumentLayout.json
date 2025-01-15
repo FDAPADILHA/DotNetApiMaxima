@@ -3,16 +3,36 @@
   "WorkspaceRootPath": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\databasesetup\\create_pkg.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\databasesetup\\create_pkg.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\dotnetapimaxima.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\dotnetapimaxima.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\config\\departamentomapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\config\\departamentomapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\config\\produtomapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\config\\produtomapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\models\\departamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\models\\departamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\config\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\config\\contexto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|c:\\crudmaxima\\dotnetapimaxima\\dotnetapimaxima\\databasesetup\\create_pkg.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{3A5968CE-FFA5-4D13-981D-4D3A552F813E}|DotNetApiMaxima\\DotNetApiMaxima.csproj|solutionrelative:dotnetapimaxima\\databasesetup\\create_pkg.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +42,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "create_pkg.sql ",
+              "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\DataBaseSetup\\create_pkg.sql",
+              "RelativeDocumentMoniker": "DotNetApiMaxima\\DataBaseSetup\\create_pkg.sql",
+              "ToolTip": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\DataBaseSetup\\create_pkg.sql",
+              "RelativeToolTip": "DotNetApiMaxima\\DataBaseSetup\\create_pkg.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-01-15T10:00:13.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DotNetApiMaxima",
+              "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\DotNetApiMaxima.csproj",
+              "RelativeDocumentMoniker": "DotNetApiMaxima\\DotNetApiMaxima.csproj",
+              "ToolTip": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\DotNetApiMaxima.csproj",
+              "RelativeToolTip": "DotNetApiMaxima\\DotNetApiMaxima.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-15T09:58:15.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Departamento.cs",
+              "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Models\\Departamento.cs",
+              "RelativeDocumentMoniker": "DotNetApiMaxima\\Models\\Departamento.cs",
+              "ToolTip": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Models\\Departamento.cs",
+              "RelativeToolTip": "DotNetApiMaxima\\Models\\Departamento.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T09:13:54.116Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -46,20 +104,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "DepartamentoMapping.cs",
+              "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Config\\DepartamentoMapping.cs",
+              "RelativeDocumentMoniker": "DotNetApiMaxima\\Config\\DepartamentoMapping.cs",
+              "ToolTip": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Config\\DepartamentoMapping.cs",
+              "RelativeToolTip": "DotNetApiMaxima\\Config\\DepartamentoMapping.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T09:13:36.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ProdutoMapping.cs",
               "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Config\\ProdutoMapping.cs",
               "RelativeDocumentMoniker": "DotNetApiMaxima\\Config\\ProdutoMapping.cs",
               "ToolTip": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Config\\ProdutoMapping.cs",
               "RelativeToolTip": "DotNetApiMaxima\\Config\\ProdutoMapping.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-14T22:05:18.257Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Contexto.cs",
               "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Config\\Contexto.cs",
               "RelativeDocumentMoniker": "DotNetApiMaxima\\Config\\Contexto.cs",
@@ -67,21 +138,19 @@
               "RelativeToolTip": "DotNetApiMaxima\\Config\\Contexto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T22:05:14.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T22:05:14.72Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "ProdutoController.cs",
               "DocumentMoniker": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Controllers\\ProdutoController.cs",
               "RelativeDocumentMoniker": "DotNetApiMaxima\\Controllers\\ProdutoController.cs",
               "ToolTip": "C:\\CRUDMAXIMA\\DotNetApiMaxima\\DotNetApiMaxima\\Controllers\\ProdutoController.cs",
               "RelativeToolTip": "DotNetApiMaxima\\Controllers\\ProdutoController.cs",
-              "ViewState": "AQIAAFQAAAAAAAAAAAAkwGwAAAAyAAAA",
+              "ViewState": "AQIAAKsAAAAAAAAAAAAAAMEAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T21:42:40.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T21:42:40.901Z"
             }
           ]
         }
