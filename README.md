@@ -71,132 +71,17 @@ Esta API permite gerenciar produtos, incluindo funcionalidades de adicionar, lis
 
 ## Endpoints Disponíveis
 
-### 1. Adicionar Produto
-**URL:** `POST /api/Produto/AdicionarProduto`
-
-**Descrição:** Adiciona um novo produto no sistema.
-
-**Campos Obrigatórios:**
-- `Codprod` (string): Código único do produto.
-- `Descricao` (string): Descrição do produto.
-- `Coddepto` (string): Código do departamento.
-- `Preco` (decimal): Preço do produto.
-- `Status` (string): Status do produto. Valores permitidos:
-  - `A`: Ativo.
-  - `I`: Inativo.
-
-**Exemplo de Requisição:**
-```json
-{
-  "Codprod": "1234",
-  "Descricao": "Produto Exemplo",
-  "Coddepto": "001",
-  "Preco": 50.0,
-  "Status": "A"
-}
-```
-
-**Exemplo de Resposta (201):**
-```json
-{
-  "Codprod": "1234",
-  "Descricao": "Produto Exemplo",
-  "Coddepto": "001",
-  "Preco": 50.0,
-  "Status": "A"
-}
-```
-
----
-
-### 2. Listar Produtos
-**URL:** `GET /api/Produto/ListarProdutos`
-
-**Descrição:** Retorna todos os produtos cadastrados.
-
-**Exemplo de Resposta (200):**
-```json
-[
-  {
-    "Codprod": "1234",
-    "Descricao": "Produto Exemplo",
-    "Coddepto": "001",
-    "Preco": 50.0,
-    "Status": "A"
-  },
-  {
-    "Codprod": "5678",
-    "Descricao": "Outro Produto",
-    "Coddepto": "002",
-    "Preco": 75.5,
-    "Status": "I"
-  }
-]
-```
-
-**Exemplo de Resposta (404):**
-```json
-"Nenhum produto cadastrado."
-```
-
----
-
-### 3. Consultar Produto por Código
-**URL:** `GET /api/Produto/ConsultarProduto/{Codprod}`
-
-**Descrição:** Retorna as informações de um produto específico.
-
-**Parâmetro Obrigatório:**
-- `Codprod` (string): Código do produto a ser consultado.
-
-**Exemplo de Resposta (200):**
-```json
-{
-  "Codprod": "1234",
-  "Descricao": "Produto Exemplo",
-  "Coddepto": "001",
-  "Preco": 50.0,
-  "Status": "A"
-}
-```
-
-**Exemplo de Resposta (404):**
-```json
-"Produto com Codprod 1234 não encontrado."
-```
-
----
-
-### 4. Excluir Produto
-**URL:** `POST /api/Produto/ExcluirProduto/{Codprod}`
-
-**Descrição:** Exclui um produto específico do sistema.
-
-**Parâmetro Obrigatório:**
-- `Codprod` (string): Código do produto a ser excluído.
-
-**Exemplo de Resposta (200):**
-```json
-"Produto com Codprod 1234 foi excluído com sucesso."
-```
-
-**Exemplo de Resposta (404):**
-```json
-"Produto com Codprod 1234 não encontrado."
-```
-
----
-
-## Observações
-- Os campos `id` e `codoperacao` são definidos como `null` automaticamente e não devem ser enviados pelo usuário.
-- Certifique-se de utilizar os valores permitidos para o campo `Status`.
-- Todas as respostas seguem o formato JSON.
 
 Se houver dúvidas, entre em contato com o suporte da API.
 
 
 
 ## Instalação
+
+###Onde baixar o Visual Studio 2022
+Link para Download -> https://visualstudio.microsoft.com/pt-br/downloads/
+
+###Como Instalar e Configurar o ambiente de dados:
 
 Link para Download -> https://www.oracle.com/br/database/technologies/xe-downloads.html
 
@@ -210,6 +95,16 @@ Oracle IDE 23.1.1.345.2114 ou versões acima
 
 Recomendo instalar com a JDK incluída: Windows 64-bit with JDK 17 included
 
+Durante a instalação atente-se ao criar o usuário como "SYSTEM" e de guardar a senha que você definiu porque isso será importante para os próximos passos de criação do ambiente do banco.
+
+#### 1° Passo: Realizar o git clone ou download do zip do projeto: 
+--Crie um diretório no seu computador para guardar o projeto e utilizar como caminho de execução no Visual Studio 2022
+--Comando para Clonar repositório em git
+git clone https://github.com/FDAPADILHA/DotNetApiMaxima.git
+
+#### 2° Passo: Abrir o SQL Developer e acessar o banco com usuário SYSTEM
+
+#### 3° Passo: Criar o TS
 Criando o Table Space: 
 
 create tablespace crudecmaxima
@@ -221,162 +116,49 @@ create tablespace crudecmaxima
    extent management local autoallocate
    segment space management auto;
 
-Criando as tabelas e sequências:
+#### 4° Passo: Abrir o Visual Studio 2022 e selecionar o diretório do projeto. Você deverá ver essa estrutura:
 
-CREATE TABLE MXSUSUARIOS
-(	IDUSUARIO INT NOT NULL PRIMARY KEY,
-	NOME VARCHAR2(50) NOT NULL,
-	LOGIN VARCHAR2(50) NOT NULL,
-	SENHA VARCHAR2(50) NOT NULL,
-    	STATUS VARCHAR2(1)
-	);
+.
+├── Config/                 # Configurações e mapeamentos do Entity Framework
+│   ├── Contexto.cs         # Contexto do banco de dados
+│   ├── DepartamentoMapping.cs  # Mapeamento da entidade Departamento
+│   └── ProdutoMapping.cs       # Mapeamento da entidade Produto
+├── Controllers/            # Controladores da API
+│   └── ProdutoController.cs    # Controlador para produtos
+├── DataBaseSetup/          # Scripts relacionados ao banco de dados
+│   └── create_pkg.sql          # Script para configuração do banco
+├── Models/                 # Modelos de domínio da aplicação
+│   ├── Departamento.cs         # Entidade Departamento
+│   └── Produto.cs              # Entidade Produto
+├── Pages/                  # Páginas do Razor (se aplicável)
+├── Properties/             # Configurações do projeto
+├── wwwroot/                # Arquivos estáticos da aplicação
+├── appsettings.json        # Configurações da aplicação
+└── Program.cs              # Configuração e inicialização da aplicação
 
-CREATE SEQUENCE SEQ_USU START WITH 1 INCREMENT BY 1 NOMAXVALUE;
+Se não estiver vendo essa estrutura, então dê um duplo clique em "DotNetApiMaxima.sln";
 
-CREATE TABLE MXSDEPARTAMENTO
-(	IDDEPTO INT NOT NULL,
-	CODDEPTO VARCHAR2(50) NOT NULL,
-	DESCRICAO VARCHAR2(4000),
-	STATUS VARCHAR2(1) NOT NULL,
-    CONSTRAINT PK_DEP PRIMARY KEY(IDDEPTO,CODDEPTO),
-    CONSTRAINT UQ_COD_DEP UNIQUE(CODDEPTO)
-	);
+#### 5° Passo: Criar as tabelas, triggers e Jobs do banco de dados Oracle:
 
-CREATE SEQUENCE SEQ_DEP START WITH 1 INCREMENT BY 1 NOMAXVALUE;
+No Visual Studio 2022 acesse a pasta 
+├── DataBaseSetup/          # Scripts relacionados ao banco de dados
+│   └── create_pkg.sql          # Script para configuração do banco
 
-CREATE TABLE MXSPRODUTO
-(	IDPROD INT NOT NULL,
-	CODPROD VARCHAR2(50) NOT NULL,
-	DESCRICAO VARCHAR2(4000),
-	CODDEPTO VARCHAR2(50) NOT NULL,
-	PRECO NUMBER(10, 6) NOT NULL,
-	STATUS VARCHAR2(1) NOT NULL,
-	CODOPERACAO NUMBER(1) NOT NULL,
-	CONSTRAINT FK_COD_DEPTO FOREIGN KEY(CODDEPTO) REFERENCES MXSDEPARTAMENTO(CODDEPTO),
-    CONSTRAINT PK_PROD PRIMARY KEY(IDPROD, CODPROD)
-	);
+Dentro do arquivo "create_pkg.sql" consta outro passo a passo para executar a PKG de criação do ambiente.
 
-CREATE SEQUENCE SEQ_PRD START WITH 1 INCREMENT BY 1 NOMAXVALUE;
+#### 5° Passo: Popular os dados nas tabelas:
 
-CREATE TABLE MXSPRODUTOLOG
-(	CODPRODANT VARCHAR2(50),
-    	CODPROD VARCHAR2(50),
-        CODDEPTOANT VARCHAR2(50),
-    	CODDEPTO VARCHAR2(50),
-        PRECOANT NUMBER(10, 6),
-    	PRECO NUMBER(10, 6),
-        STATUSANT VARCHAR2(1),
-    	STATUS VARCHAR2(1),
-        CODOPERACAOANT NUMBER(1),
-    	CODOPERACAO NUMBER(1),
-    	DTATUALIZ DATE
-	);
+-- Departamentos
+INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 1, 'MOUSES', 'A');
+INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 2, 'TECLADOS', 'A');
+INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 3, 'MONITORES', 'A');
+INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 4, 'HEADSETS', 'A');
+INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 5, 'CADEIRAS GAMER', 'A');
 
-CREATE TABLE MXSLOGERRO
-(       NOMETRG VARCHAR2(2000),
-        DESCRICAO VARCHAR2(4000),
-        DATAERRO DATE
-        );
+-- Produtos
+INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (11, 'TECL-GAMER11', 'TECLADO MECANICO AZUL', 2, 250.50, 'A', 0);
+INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (12, 'MON-ULTRAWIDE12', 'MONITOR ULTRAWIDE 29"', 3, 1299.99, 'I', 0);
+INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (13, 'HEAD-GAMER13', 'HEADSET 7.1 SURROUND', 4, 320.00, 'A', 0);
+INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (14, 'CADE-GAMER14', 'CADEIRA ERGONOMICA PRETA', 5, 850.99, 'A', NULL);
 
-Criando as Triggers:
-
-CREATE OR REPLACE TRIGGER TRG_MXSUSUARIOS 
-    BEFORE INSERT ON MXSUSUARIOS 
-    FOR EACH ROW  
-        BEGIN 
-        IF :NEW.IDUSUARIO IS NULL THEN 
-            SELECT SEQ_USU.NEXTVAL INTO :NEW.IDUSUARIO FROM DUAL; 
-        END IF; 
-        :NEW.STATUS := 'A';
-    END; 
-
-CREATE OR REPLACE TRIGGER TRG_MXSDEPARTAMENTO 
-    BEFORE INSERT ON MXSDEPARTAMENTO 
-    FOR EACH ROW  
-        BEGIN 
-        IF :NEW.IDDEPTO IS NULL THEN 
-            SELECT SEQ_DEP.NEXTVAL INTO :NEW.IDDEPTO FROM DUAL; 
-        END IF; 
-	:NEW.STATUS := 'A';
-    END; 
-
-CREATE OR REPLACE TRIGGER TRG_MXSPRODUTO
-   BEFORE DELETE OR INSERT OR UPDATE ON MXSPRODUTO
-   REFERENCING NEW AS NEW OLD AS OLD
-   FOR EACH ROW
-DECLARE
-   OPER NUMBER;                                  
-   ECODE NUMBER;                     
-   EMESG VARCHAR2(4000);           
-BEGIN
-   OPER := 0;
-   IF INSERTING
-   THEN
-        IF :NEW.IDPROD IS NULL THEN 
-        SELECT SEQ_PRD.NEXTVAL INTO :NEW.IDPROD FROM DUAL; 
-    END IF;
-    OPER := 0;
-   ELSIF UPDATING
-   THEN
-      OPER := 1;
-   ELSIF DELETING
-   THEN
-      OPER := 2;
-   END IF;
-
-   IF (OPER = 2 AND NVL(:OLD.CODOPERACAO,0) != 2)
-       THEN
-          :NEW.CODOPERACAO := 2;
-          RAISE_APPLICATION_ERROR (-20000, 'Não é permitida deleção física do registro, apenas se já estiver inativo!');
-   END IF;
-
-   IF (NVL (:NEW.CODOPERACAO, 0) != 2)
-       THEN
-          :NEW.CODOPERACAO := OPER;
-   END IF;
    
-EXCEPTION
-   WHEN OTHERS
-   THEN
-      ECODE := SQLCODE;
-      EMESG := SQLERRM;
-      IF (OPER = 2 AND NVL(:OLD.CODOPERACAO,0) != 2)
-      THEN
-         RAISE_APPLICATION_ERROR (-20000, 'Não é permitida deleção física do registro, apenas se já estiver inativo!');
-      ELSE
-         INSERT INTO MXSLOGERRO (DATAERRO, NOMETRG, DESCRICAO) VALUES (SYSDATE, 'TRG_MXSPRODUTO', SUBSTR(TO_CHAR (ECODE) || '-' || EMESG || ' ** ' || DBMS_UTILITY.FORMAT_CALL_STACK,0,4000));
-      END IF;
-END;
-
-CREATE OR REPLACE TRIGGER TRG_MXSPRODUTO_LOG 
-  AFTER INSERT OR DELETE OR UPDATE ON MXSPRODUTO 
-  FOR EACH ROW
-  DECLARE
-    OPER NUMBER(1);
-    ECODE NUMBER; 
-    EMESG VARCHAR2(4000); 
-
-BEGIN 
-    IF INSERTING THEN 
-      OPER := 0;
-      INSERT INTO MXSPRODUTOLOG 
-                  (CODPRODANT,CODPROD,CODDEPTOANT,CODDEPTO,PRECOANT,PRECO,STATUSANT,STATUS,CODOPERACAOANT,CODOPERACAO,DTATUALIZ) 
-      VALUES      (NULL,:NEW.CODPROD,NULL,:NEW.CODDEPTO,NULL,:NEW.PRECO,NULL,:NEW.STATUS,NULL,OPER,SYSDATE);  
-    ELSIF UPDATING THEN 
-      OPER := 1;
-      INSERT INTO MXSPRODUTOLOG 
-                  (CODPRODANT,CODPROD,CODDEPTOANT,CODDEPTO,PRECOANT,PRECO,STATUSANT,STATUS,CODOPERACAOANT,CODOPERACAO,DTATUALIZ)  
-      VALUES      (:OLD.CODPROD,:NEW.CODPROD,:OLD.CODDEPTO,:NEW.CODDEPTO,:OLD.PRECO,:NEW.PRECO,:OLD.STATUS,:NEW.STATUS,:OLD.CODOPERACAO,OPER,SYSDATE);  
-    ELSIF DELETING THEN 
-      OPER := 2;
-      INSERT INTO MXSPRODUTOLOG 
-                  (CODPRODANT,CODPROD,CODDEPTOANT,CODDEPTO,PRECOANT,PRECO,STATUSANT,STATUS,CODOPERACAOANT,CODOPERACAO,DTATUALIZ)  
-      VALUES      (:OLD.CODPROD,NULL,:OLD.CODDEPTO,NULL,:OLD.PRECO,NULL,:OLD.STATUS,:NEW.STATUS,:OLD.CODOPERACAO,OPER,SYSDATE);
-    END IF; 
-    
- EXCEPTION 
-   WHEN OTHERS THEN 
-      ECODE := SQLCODE; 
-      EMESG := SQLERRM; 
-      INSERT INTO MXSLOGERRO (DATAERRO, NOMETRG, DESCRICAO) VALUES (SYSDATE,'TRG_MXSPRODUTO_LOG',TO_CHAR (ECODE) || ' - ' || EMESG); 
-END; 
