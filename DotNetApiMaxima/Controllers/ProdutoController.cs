@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNetApiMaxima.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
@@ -18,6 +19,8 @@ namespace DotNetApiMaxima.Controllers
 
         // POST: api/Produto/AdicionarProduto
         [HttpPost("AdicionarProduto")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
         public async Task<IActionResult> AdicionarProduto(Produto produto)
         {
             try
@@ -58,27 +61,61 @@ namespace DotNetApiMaxima.Controllers
             }
         }
 
-        // POST: api/Produto/ExcluirProduto/{Codprod}
-        [HttpPost("ExcluirProduto/{Codprod}")]
-        public async Task<IActionResult> ExcluirProduto(string Codprod)
+        //Para tratar vários produtos a serem excluídos
+        public class ProdutoExcluirRequest
+        {
+            public string Codprod { get; set; }
+        }
+
+        // Endpoint para excluir um ou mais produtos
+        [HttpDelete("ExcluirProduto")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
+        public async Task<IActionResult> ExcluirProduto([FromBody] List<ProdutoExcluirRequest> produtos)
         {
             try
             {
-                var produto = await _contexto.Produto.FirstOrDefaultAsync(p => p.Codprod == Codprod);
+                // Verifica se a lista de códigos foi fornecida
+                if (produtos == null || !produtos.Any())
+                {
+                    return BadRequest("Nenhum código de produto fornecido.");
+                }
 
-                if (produto != null)
+                // Busca os produtos na base de dados
+                var produtosEncontrados = await _contexto.Produto
+                    .Where(p => produtos.Select(pr => pr.Codprod).Contains(p.Codprod))
+                    .ToListAsync();
+
+                // Verifica se os produtos foram encontrados
+                if (!produtosEncontrados.Any())
+                {
+                    return NotFound("Nenhum dos produtos informados foi encontrado.");
+                }
+
+                // Atualiza os produtos antes de excluí-los
+                foreach (var produto in produtosEncontrados)
                 {
                     produto.Codoperacao = 2;
                     _contexto.Produto.Update(produto);
-                    await _contexto.SaveChangesAsync();
+                }
+                await _contexto.SaveChangesAsync();
 
-                    _contexto.Produto.Remove(produto);
-                    await _contexto.SaveChangesAsync();
+                // Exclui os produtos
+                _contexto.Produto.RemoveRange(produtosEncontrados);
+                await _contexto.SaveChangesAsync(); // Salva as exclusões
 
-                    return Ok($"Produto com Codprod {Codprod} foi excluído com sucesso.");
+                // Cria a mensagem de sucesso com base no número de produtos excluídos
+                string mensagem;
+                if (produtosEncontrados.Count == 1)
+                {
+                    mensagem = $"Produto com o código {produtosEncontrados.First().Codprod} foi excluído com sucesso.";
+                }
+                else
+                {
+                    mensagem = $"Produtos com os códigos {string.Join(", ", produtosEncontrados.Select(p => p.Codprod))} foram excluídos com sucesso.";
                 }
 
-                return NotFound($"Produto com Codprod {Codprod} não encontrado.");
+                return Ok(mensagem);
             }
             catch (Exception ex)
             {
@@ -86,8 +123,11 @@ namespace DotNetApiMaxima.Controllers
             }
         }
 
+
         // GET: api/Produto/ListarProdutos
         [HttpGet("ListarProdutos")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
         public async Task<IActionResult> ListarProdutos()
         {
             try
@@ -119,6 +159,8 @@ namespace DotNetApiMaxima.Controllers
 
         // GET: api/Produto/ConsultarProduto/{Codprod}
         [HttpGet("ConsultarProduto/{Codprod}")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
         public async Task<IActionResult> ConsultarProduto(string Codprod)
         {
             if (string.IsNullOrWhiteSpace(Codprod))
@@ -129,7 +171,7 @@ namespace DotNetApiMaxima.Controllers
             try
             {
                 var produto = await _contexto.Produto
-                    .Where(p => p.Codprod == Codprod)
+                    .Where(p => p.Codprod.Trim() == Codprod.Trim())
                     .Select(p => new
                     {
                         p.Codprod,
