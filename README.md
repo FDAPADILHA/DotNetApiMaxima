@@ -117,7 +117,7 @@ create tablespace crudecmaxima
    segment space management auto;
 
 #### 4° Passo: Abrir o Visual Studio 2022 e selecionar o diretório do projeto. Você deverá ver essa estrutura:
-
+```plaintext
 .
 ├── Config/                 # Configurações e mapeamentos do Entity Framework
 │   ├── Contexto.cs         # Contexto do banco de dados
@@ -135,14 +135,17 @@ create tablespace crudecmaxima
 ├── wwwroot/                # Arquivos estáticos da aplicação
 ├── appsettings.json        # Configurações da aplicação
 └── Program.cs              # Configuração e inicialização da aplicação
+```
 
 Se não estiver vendo essa estrutura, então dê um duplo clique em "DotNetApiMaxima.sln";
 
 #### 5° Passo: Criar as tabelas, triggers e Jobs do banco de dados Oracle:
 
 No Visual Studio 2022 acesse a pasta 
+```plaintext
 ├── DataBaseSetup/          # Scripts relacionados ao banco de dados
 │   └── create_pkg.sql          # Script para configuração do banco
+```
 
 Dentro do arquivo "create_pkg.sql" consta outro passo a passo para executar a PKG de criação do ambiente.
 
