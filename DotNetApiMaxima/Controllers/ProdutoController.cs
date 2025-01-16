@@ -19,12 +19,93 @@ namespace DotNetApiMaxima.Controllers
         }
 
         /*########################################################################################################################################################
-        *******************************************************   // POST: api/Produto/AdicionarProduto   *******************************************************
+        *******************************************************   // GET: api/Produto/ListarProdutosTodos   *******************************************************
+        ########################################################################################################################################################*/
+
+        [HttpGet("ListarProdutosTodos")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
+        public async Task<IActionResult> ListarProdutosTodos()
+        {
+            try
+            {
+                var lista = await _contexto.Produto
+                    .Select(p => new
+                    {
+                        p.Codprod,
+                        p.Descricao,
+                        p.Coddepto,
+                        p.Preco,
+                        p.Status
+                    })
+                    .ToListAsync();
+
+                if (lista == null || !lista.Any())
+                {
+                    return NotFound("Nenhum produto cadastrado.");
+                }
+
+                return Ok(lista);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
+            }
+        }
+
+        /*########################################################################################################################################################
+        *******************************************************   // GET: api/Produto/ConsultarProdutos   *******************************************************
+        ########################################################################################################################################################*/
+
+        [HttpGet("ConsultarProdutos")]
+        [ProducesResponseType(200, Type = typeof(List<object>))]
+        [ProducesResponseType(404, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
+        public async Task<IActionResult> ConsultarProdutos([FromQuery] List<string> codprod)
+        {
+            try
+            {
+                if (codprod == null || !codprod.Any())
+                {
+                    return BadRequest(new { Message = "Nenhum código de produto fornecido." });
+                }
+
+                var produtosEncontrados = await _contexto.Produto
+                    .Where(p => codprod.Contains(p.Codprod.Trim()))
+                    .Select(p => new
+                    {
+                        p.Codprod,
+                        p.Descricao,
+                        p.Coddepto,
+                        p.Preco,
+                        p.Status
+                    })
+                    .ToListAsync();
+
+                if (!produtosEncontrados.Any())
+                {
+                    return NotFound(new { Message = "Nenhum dos produtos informados foi encontrado." });
+                }
+
+                return Ok(produtosEncontrados);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    Message = "Erro interno no servidor. Considere contatar o Suporte à API.",
+                    Details = ex.Message
+                });
+            }
+        }
+
+        /*########################################################################################################################################################
+        *******************************************************   // POST: api/Produto/AdicionarProdutos   *******************************************************
         ########################################################################################################################################################*/
 
         [HttpPost("AdicionarProdutos")]
         [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400, Type = typeof(string))]
+        [ProducesResponseType(404, Type = typeof(string))]
         [ProducesResponseType(500, Type = typeof(string))]
         public async Task<IActionResult> AdicionarProdutos([FromBody] List<Produto> produtos)
         {
@@ -70,6 +151,99 @@ namespace DotNetApiMaxima.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { Message = "Erro interno no servidor. Considere contatar o Suporte à API.", Details = ex.Message });
+            }
+        }
+
+        /*########################################################################################################################################################
+        *******************************************************   // PUT: api/Produto/AtualizarProdutos   *******************************************************
+        ########################################################################################################################################################*/
+
+        private string ValidarProduto(Produto produto)
+        {
+            if (produto == null)
+            {
+                return "O produto não pode ser nulo.";
+            }
+
+            if (string.IsNullOrEmpty(produto.Coddepto))
+            {
+                return "Código do departamento é obrigatório.";
+            }
+
+            if (produto.Preco <= 0)
+            {
+                return "O preço deve ser maior que zero.";
+            }
+
+            if (string.IsNullOrEmpty(produto.Status) || (produto.Status != "A" && produto.Status != "I"))
+            {
+                return "O status deve ser 'A' (Ativo) ou 'I' (Inativo).";
+            }
+
+            return string.Empty;
+        }
+
+        /*########################################################################################################################################################
+        *******************************************************   // DELETE: api/Produto/InativarProdutos   *******************************************************
+        ########################################################################################################################################################*/
+
+        public class ProdutoInativarrRequest
+        {
+            public required string Codprod { get; set; }
+        }
+
+        [HttpDelete("InativarProdutos")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(404, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
+        public async Task<IActionResult> InativarProdutos([FromBody] List<ProdutoInativarrRequest> produtos)
+        {
+            try
+            {
+                if (produtos == null || !produtos.Any())
+                {
+                    return BadRequest("Nenhum código de produto fornecido.");
+                }
+
+                var codprodList = produtos.Select(pr => pr.Codprod).ToList();
+
+                // Busca os produtos no banco de dados
+                var produtosEncontrados = await _contexto.Produto
+                    .Where(p => codprodList.Contains(p.Codprod))
+                    .ToListAsync();
+
+                if (!produtosEncontrados.Any())
+                {
+                    return NotFound("Nenhum dos produtos informados foi encontrado.");
+                }
+
+                // Inativa os produtos encontrados
+                foreach (var produto in produtosEncontrados)
+                {
+                    produto.Status = "I"; // Define como inativo
+                    _contexto.Produto.Update(produto);
+                }
+
+                await _contexto.SaveChangesAsync();
+
+                // Identifica os códigos não encontrados
+                var codprodNaoEncontrados = codprodList
+                    .Except(produtosEncontrados.Select(p => p.Codprod))
+                    .ToList();
+
+                // Retorna a resposta apropriada
+                var mensagemRetorno = new
+                {
+                    Mensagem = "Operação concluída.",
+                    ProdutosInativados = produtosEncontrados.Select(p => new { p.Codprod, p.Descricao }),
+                    ProdutosNaoEncontrados = codprodNaoEncontrados
+                };
+
+                return Ok(mensagemRetorno);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
             }
         }
 
@@ -134,145 +308,47 @@ namespace DotNetApiMaxima.Controllers
         }
 
         /*########################################################################################################################################################
-        *******************************************************   // GET: api/Produto/ListarProdutosTodos   *******************************************************
+        *******************************************************   // DELETE: api/Produto/ExcluirProdutosTodos   *******************************************************
         ########################################################################################################################################################*/
 
-        [HttpGet("ListarProdutosTodos")]
+        [HttpDelete("ExcluirProdutosTodos")]
         [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(404, Type = typeof(string))]
         [ProducesResponseType(500, Type = typeof(string))]
-        public async Task<IActionResult> ListarProdutosTodos()
+        public async Task<IActionResult> ExcluirTodosProdutos()
         {
             try
             {
-                var lista = await _contexto.Produto
-                    .Select(p => new
-                    {
-                        p.Codprod,
-                        p.Descricao,
-                        p.Coddepto,
-                        p.Preco,
-                        p.Status
-                    })
-                    .ToListAsync();
+                var produtos = await _contexto.Produto.ToListAsync();
 
-                if (lista == null || !lista.Any())
+                if (produtos == null || !produtos.Any())
                 {
-                    return NotFound("Nenhum produto cadastrado.");
+                    return NotFound("Nenhum produto encontrado para exclusão.");
                 }
 
-                return Ok(lista);
+                // Define Codoperacao = 2 para todos os produtos
+                foreach (var produto in produtos)
+                {
+                    produto.Codoperacao = 2;
+                    _contexto.Produto.Update(produto);
+                }
+                await _contexto.SaveChangesAsync();
+
+                // Remove todos os produtos
+                _contexto.Produto.RemoveRange(produtos);
+                await _contexto.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    Mensagem = "Todos os produtos foram excluídos com sucesso.",
+                    QuantidadeExcluida = produtos.Count
+                });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
             }
         }
-
-        /*########################################################################################################################################################
-        *******************************************************   // GET: api/Produto/ConsultarProdutos   *******************************************************
-        ########################################################################################################################################################*/
-
-        [HttpGet("ConsultarProdutos")]
-        [ProducesResponseType(200, Type = typeof(List<object>))]
-        [ProducesResponseType(400, Type = typeof(string))]
-        [ProducesResponseType(500, Type = typeof(string))]
-        public async Task<IActionResult> ConsultarProdutos([FromQuery] List<string> codprod)
-        {
-            try
-            {
-                if (codprod == null || !codprod.Any())
-                {
-                    return BadRequest(new { Message = "Nenhum código de produto fornecido." });
-                }
-
-                var produtosEncontrados = await _contexto.Produto
-                    .Where(p => codprod.Contains(p.Codprod.Trim()))
-                    .Select(p => new
-                    {
-                        p.Codprod,
-                        p.Descricao,
-                        p.Coddepto,
-                        p.Preco,
-                        p.Status
-                    })
-                    .ToListAsync();
-
-                if (!produtosEncontrados.Any())
-                {
-                    return NotFound(new { Message = "Nenhum dos produtos informados foi encontrado." });
-                }
-
-                return Ok(produtosEncontrados);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new
-                {
-                    Message = "Erro interno no servidor. Considere contatar o Suporte à API.",
-                    Details = ex.Message
-                });
-            }
-        }
-
-        /*########################################################################################################################################################
-        *******************************************************   // PUT: api/Produto/AtualizarProdutos   *******************************************************
-        ########################################################################################################################################################*/
-
-        [HttpPut("AtualizarProduto")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(400, Type = typeof(string))]
-        [ProducesResponseType(500, Type = typeof(string))]
-        public async Task<IActionResult> AtualizarProduto([FromBody] Produto produto)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(produto.Codprod))
-                {
-                    return BadRequest("O código do produto (Codprod) é obrigatório.");
-                }
-
-                var produtoExistente = await _contexto.Produto
-                    .FirstOrDefaultAsync(p => p.Codprod == produto.Codprod);
-
-                if (produtoExistente == null)
-                {
-                    return NotFound($"Produto com código {produto.Codprod} não encontrado.");
-                }
-
-                // Atualizando os campos do produto com os dados recebidos
-                produtoExistente.Descricao = produto.Descricao ?? produtoExistente.Descricao;
-                produtoExistente.Coddepto = produto.Coddepto ?? produtoExistente.Coddepto;
-                produtoExistente.Preco = produto.Preco ?? produtoExistente.Preco;
-                produtoExistente.Status = produto.Status ?? produtoExistente.Status;
-
-                // Definindo os campos Codoperacao e Idprod como null
-                produtoExistente.Codoperacao = null;
-                produtoExistente.Id = null;
-
-                // Atualizando o produto no banco de dados
-                _contexto.Produto.Update(produtoExistente);
-                await _contexto.SaveChangesAsync();
-
-                return Ok(new
-                {
-                    Message = "Produto atualizado com sucesso.",
-                    Produto = new
-                    {
-                        produtoExistente.Codprod,
-                        produtoExistente.Descricao,
-                        produtoExistente.Coddepto,
-                        produtoExistente.Preco,
-                        produtoExistente.Status
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                // Detalha o erro de forma mais informativa
-                return StatusCode(500, new { Message = "Erro interno no servidor. Considere contatar o Suporte à API.", Details = ex.Message });
-            }
-        }
-
 
 
 
