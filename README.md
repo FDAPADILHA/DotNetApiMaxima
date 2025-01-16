@@ -152,6 +152,7 @@ Dentro do arquivo "create_pkg.sql" consta outro passo a passo para executar a PK
 #### 5° Passo: Popular os dados nas tabelas:
 
 -- Departamentos
+```plaintext
 INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 1, 'MOUSES', 'A');
 INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 2, 'TECLADOS', 'A');
 INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 3, 'MONITORES', 'A');
@@ -163,5 +164,27 @@ INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, COD
 INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (12, 'MON-ULTRAWIDE12', 'MONITOR ULTRAWIDE 29"', 3, 1299.99, 'I', 0);
 INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (13, 'HEAD-GAMER13', 'HEADSET 7.1 SURROUND', 4, 320.00, 'A', 0);
 INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (14, 'CADE-GAMER14', 'CADEIRA ERGONOMICA PRETA', 5, 850.99, 'A', NULL);
+```
 
-   
+#### 6° Passo Instalação do NODE.JS:
+Instalar o Node.js v22.13.0 (versão 23 não suportada pelo Angular)
+Link para Download -> https://nodejs.org/pt
+Obs: Processo de instação next, next e finish e será instalado a partir de um arquivo que você fez Download e salvou na sua máquina
+
+#### 7° Passo Instalar ou verificar instalação do Angular:
+Certifique-se de que o Node.js e o npm estão instalados no sistema.
+Para instalar no Windows via comando você pode abrir o Terminal ou Windows Power Shell e escrever o comando:
+
+npm install -g @angular/cli@latest
+
+Para conferir se foi instalado:
+npm -v
+
+#### 8° Passo: Instalar as dependências do Angular para executar o projeto
+Dentro do Vistual Studio 2022
+   Usar o Terminal para realizar o comando:
+   cd 
+   Usar o comando para Instalar ou verificar se já está instalado o Angular:
+   npm install -g @angular/cli@latest
+
+
