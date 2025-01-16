@@ -2,6 +2,7 @@
 using DotNetApiMaxima.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Oracle.ManagedDataAccess.Client;
 using System.Text;
 
 namespace DotNetApiMaxima.Controllers
@@ -157,36 +158,103 @@ namespace DotNetApiMaxima.Controllers
         /*########################################################################################################################################################
         *******************************************************   // PUT: api/Produto/AtualizarProdutos   *******************************************************
         ########################################################################################################################################################*/
-
-        private string ValidarProduto(Produto produto)
+        public class ProdutoAtualizarRequest
         {
-            if (produto == null)
-            {
-                return "O produto não pode ser nulo.";
-            }
+            public required string Codprod { get; set; }
+            public string? Descricao { get; set; }
+            public string? Coddepto { get; set; }
+            public decimal? Preco { get; set; }
+            public string? Status { get; set; }
+        }
 
-            if (string.IsNullOrEmpty(produto.Coddepto))
+        [HttpPut("AtualizarProdutos")]
+        [ProducesResponseType(200, Type = typeof(string))]
+        [ProducesResponseType(404, Type = typeof(string))]
+        [ProducesResponseType(500, Type = typeof(string))]
+        public async Task<IActionResult> AtualizarProdutos([FromBody] List<ProdutoAtualizarRequest> produtos)
+        {
+            try
             {
-                return "Código do departamento é obrigatório.";
-            }
+                // Validando cada produto
+                foreach (var produto in produtos)
+                {
+                    // Validando se o código do produto é informado
+                    if (string.IsNullOrEmpty(produto.Codprod))
+                        return BadRequest($"O código do produto é obrigatório para a atualização.");
 
-            if (produto.Preco <= 0)
+                }
+
+                // Atualizando os produtos
+                foreach (var produto in produtos)
+                {
+                    var sql = new StringBuilder("UPDATE MXSPRODUTO SET ");
+
+                    var parametros = new List<OracleParameter>();
+
+                    // Condicionalmente adiciona os campos para atualização
+                    if (!string.IsNullOrEmpty(produto.Descricao))
+                    {
+                        sql.Append("DESCRICAO = :Descricao, ");
+                        parametros.Add(new OracleParameter(":Descricao", produto.Descricao));
+                    }
+                    if (!string.IsNullOrEmpty(produto.Coddepto))
+                    {
+                        sql.Append("CODDEPTO = :Coddepto, ");
+                        parametros.Add(new OracleParameter(":Coddepto", produto.Coddepto));
+                    }
+                    if (produto.Preco > 0)
+                    {
+                        sql.Append("PRECO = :Preco, ");
+                        parametros.Add(new OracleParameter(":Preco", produto.Preco));
+                    }
+                    if (!string.IsNullOrEmpty(produto.Status))
+                    {
+                        sql.Append("STATUS = :Status, ");
+                        parametros.Add(new OracleParameter(":Status", produto.Status));
+
+                        // Se o Status for "A", também atualiza o CODOPERACAO para 1
+                        if (produto.Status == "A")
+                        {
+                            sql.Append("CODOPERACAO = :Codoperacao, ");
+                            parametros.Add(new OracleParameter(":Codoperacao", 1)); // Enviando CODOPERACAO = 1
+                        }
+                    }
+
+                    // Removendo a vírgula extra no final da consulta, caso algum campo tenha sido adicionado (Aqui ocorreu um problema na injeção que antes do WHERE havia uma "," e com isso o comando SQL falha)
+                    if (sql[sql.Length - 2] == ',')
+                    {
+                        sql.Length -= 2; // Remove a última vírgula e o espaço
+                    }
+
+                    // Adiciona o WHERE com o parâmetro Codprod
+                    sql.Append(" WHERE CODPROD = :Codprod");
+
+                    // Adicionando o parâmetro para o código do produto
+                    parametros.Add(new OracleParameter(":Codprod", produto.Codprod));
+
+                    // Executando o comando SQL para atualizar o produto
+                    var rowsAffected = await _contexto.Database.ExecuteSqlRawAsync(sql.ToString(), parametros.ToArray());
+
+                    // Se nenhum produto for atualizado, retorna erro
+                    if (rowsAffected == 0)
+                    {
+                        return NotFound($"Produto com código {produto.Codprod} não encontrado.");
+                    }
+                }
+
+                return Ok(new { message = "Produtos atualizados com sucesso." });
+            }
+            catch (OracleException ex)
             {
-                return "O preço deve ser maior que zero.";
+                // Log do erro
+                Console.WriteLine($"Erro ao atualizar os produtos: {ex.Message}");
+                return StatusCode(500, new { message = "Erro ao atualizar os produtos", error = ex.Message });
             }
-
-            if (string.IsNullOrEmpty(produto.Status) || (produto.Status != "A" && produto.Status != "I"))
-            {
-                return "O status deve ser 'A' (Ativo) ou 'I' (Inativo).";
-            }
-
-            return string.Empty;
         }
 
         /*########################################################################################################################################################
         *******************************************************   // DELETE: api/Produto/InativarProdutos   *******************************************************
         ########################################################################################################################################################*/
-
         public class ProdutoInativarrRequest
         {
             public required string Codprod { get; set; }

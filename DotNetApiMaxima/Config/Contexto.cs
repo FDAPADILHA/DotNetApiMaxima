@@ -24,6 +24,8 @@ namespace DotNetApiMaxima.Config
             {
                 var connectionString = _configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseOracle(connectionString);
+
+                optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
             }
         }
 
@@ -34,6 +36,9 @@ namespace DotNetApiMaxima.Config
 
             // Aplica as configurações do Produto
             modelBuilder.ApplyConfiguration(new ProdutoMapping());
+
         }
+
+
     }
 }
