@@ -1,4 +1,5 @@
 using DotNetApiMaxima.Config;
+using DotNetApiMaxima.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseRouting();
 app.MapControllers(); // Configura os controllers
 
