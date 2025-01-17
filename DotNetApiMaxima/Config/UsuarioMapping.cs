@@ -1,6 +1,7 @@
 ﻿using DotNetApiMaxima.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Globalization;
 
 namespace DotNetApiMaxima.Config
 {
@@ -13,7 +14,9 @@ namespace DotNetApiMaxima.Config
 
             builder.Property(u => u.Id)
                 .HasColumnName("IDUSUARIO")
-                .IsRequired(true);
+                .IsRequired(true)
+                .HasColumnType("NUMBER(38,0)");
+
 
             builder.Property(u => u.Nome)
                 .HasColumnName("NOME")

@@ -11,13 +11,15 @@ namespace DotNetApiMaxima.Config
             builder.ToTable("MXSPRODUTO");
             builder.HasKey(p => p.Codprod);
 
+
             builder.Property(p => p.Id)
                 .HasColumnName("IDPROD")
                 .IsRequired(false);
 
             builder.Property(p => p.Codprod)
                 .HasColumnName("CODPROD")
-                .IsRequired(true);
+                .IsRequired(true)
+                .HasMaxLength(50);
 
             builder.Property(p => p.Descricao)
                 .HasColumnName("DESCRICAO")
@@ -26,11 +28,13 @@ namespace DotNetApiMaxima.Config
 
             builder.Property(p => p.Coddepto)
                 .HasColumnName("CODDEPTO")
-                .IsRequired(true);
+                .IsRequired(true)
+                .HasMaxLength(50);
 
             builder.Property(p => p.Preco)
                 .HasColumnName("PRECO")
-                .IsRequired(true);
+                .IsRequired(true)
+                .HasColumnType("NUMBER(10,6)");
 
             builder.Property(p => p.Status)
                 .HasColumnName("STATUS")

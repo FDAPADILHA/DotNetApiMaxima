@@ -22,11 +22,13 @@ namespace DotNetApiMaxima.Config
 
             builder.Property(d=> d.Coddepto)
                 .HasColumnName("CODDEPTO")
-                .IsRequired();
+                .IsRequired(true)
+                .HasMaxLength(50);
 
             builder.Property(d => d.Status)
                 .HasColumnName("STATUS")
-                .IsRequired(false);
+                .IsRequired(false)
+                .HasMaxLength(1);
         }
     }
 }
