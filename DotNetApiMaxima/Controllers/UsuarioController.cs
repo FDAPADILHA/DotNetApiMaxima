@@ -51,13 +51,13 @@ namespace DotNetApiMaxima.Controllers
         }
 
         /*########################################################################################################################################################
-        *******************************************************   // GET: api/Usuario/ConsultarUsuario   *******************************************************
+        *******************************************************   // GET: api/Usuario/ConsultarUsuarios   *******************************************************
         ########################################################################################################################################################*/
 
-        [HttpGet("ConsultarUsuario")]
+        [HttpGet("ConsultarUsuarios")]
         [ProducesResponseType(200, Type = typeof(List<object>))]
         [ProducesResponseType(500, Type = typeof(string))]
-        public async Task<IActionResult> ConsultarUsuario([FromQuery] List<int> id)
+        public async Task<IActionResult> ConsultarUsuarios([FromQuery] List<int> id)
         {
             try
             {
@@ -364,10 +364,5 @@ namespace DotNetApiMaxima.Controllers
                 return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
             }
         }
-
-
     }
-
-
-
 }

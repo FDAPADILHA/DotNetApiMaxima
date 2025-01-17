@@ -37,10 +37,10 @@ namespace DotNetApiMaxima.Config
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new UsuarioMapping());
             modelBuilder.ApplyConfiguration(new DepartamentoMappging());
             modelBuilder.ApplyConfiguration(new ProdutoMapping());
-           
+            modelBuilder.ApplyConfiguration(new UsuarioMapping());
+
 
         }
 
