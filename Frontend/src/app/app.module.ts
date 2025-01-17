@@ -2,28 +2,25 @@ import { DepartamentoService } from './departamento.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ModalModule } from "ngx-bootstrap/modal";
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DepartamentoComponent } from './Components/departamento/departamento.component';
+import { departamentoComponent } from './components/departamento/departamento.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        DepartamentoComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        CommonModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        ModalModule.forRoot()
-    ],
-    providers: [DepartamentoService], // HttpClientModule não precisa estar em providers
-    bootstrap: [DepartamentoComponent]
+  declarations: [AppComponent, departamentoComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+  ],
+  providers: [HttpClientModule, DepartamentoService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
