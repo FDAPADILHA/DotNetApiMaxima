@@ -1,8 +1,8 @@
 export class Departamento {
 
-    Id: number;
-    Coddepto: string;
-    Descricao: string;
-    Status: string;
+    Id: number | undefined;
+    Coddepto: string | undefined;
+    Descricao: string | undefined;
+    Status: string | undefined;
 
 }

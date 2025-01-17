@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DepartamentoService {
-  url = 'https://localhost:7266/api/Departamento';
+  url = 'https://localhost:5103/api/Departamento';
 
   constructor(private http: HttpClient) {}
 
@@ -29,27 +29,27 @@ export class DepartamentoService {
   }
 
   // POST: Adicionar departamentos
-  AdicionarDepartamentos(departamentos: Departamento[]): Observable<any> {
-    return this.http.post(`${this.url}/AdicionarDepartamentos`, departamentos, httpOptions);
+  AdicionarDepartamentos(departamento: Departamento[]): Observable<any> {
+    return this.http.post(`${this.url}/AdicionarDepartamentos`, departamento, httpOptions);
   }
 
   // PUT: Atualizar departamentos
-  AtualizarDepartamentos(departamentos: any[]): Observable<any> {
-    return this.http.put(`${this.url}/AtualizarDepartamentos`, departamentos, httpOptions);
+  AtualizarDepartamentos(departamento: any[]): Observable<any> {
+    return this.http.put(`${this.url}/AtualizarDepartamentos`, departamento, httpOptions);
   }
 
   // DELETE: Inativar departamentos
-  InativarDepartamentos(departamentos: { Coddepto: string }[]): Observable<any> {
+  InativarDepartamentos(departamento: { Coddepto: string }[]): Observable<any> {
     return this.http.request('delete', `${this.url}/InativarDepartamentos`, {
-      body: departamentos,
+      body: departamento,
       ...httpOptions
     });
   }
 
   // DELETE: Excluir departamentos
-  ExcluirDepartamentos(departamentos: { Coddepto: string }[]): Observable<any> {
+  ExcluirDepartamentos(departamento: { Coddepto: string }[]): Observable<any> {
     return this.http.request('delete', `${this.url}/ExcluirDepartamentos`, {
-      body: departamentos,
+      body: departamento,
       ...httpOptions
     });
   }
