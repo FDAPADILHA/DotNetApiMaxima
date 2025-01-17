@@ -173,24 +173,33 @@ INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Pedro Pereira', 'j
 ```
 
 #### 6° Passo Instalação do NODE.JS:
-Instalar o Node.js v22.13.0 (versão 23 não suportada pelo Angular)
+Instalar o Node.js v16.20.2 (versão 23 não suportada pelo Angular)
 Link para Download -> https://nodejs.org/pt
+
 Obs: Processo de instação next, next e finish e será instalado a partir de um arquivo que você fez Download e salvou na sua máquina
 
 #### 7° Passo Instalar ou verificar instalação do Angular:
 Certifique-se de que o Node.js e o npm estão instalados no sistema.
 Para instalar no Windows via comando você pode abrir o Terminal ou Windows Power Shell e escrever o comando:
 
-npm install -g @angular/cli@latest
+npm install -g @angular/cli@12
 
 Para conferir se foi instalado:
 npm -v
 
-#### 8° Passo: Instalar as dependências do Angular para executar o projeto
+#### 8° Passo: Executar o Backend .NET:
 Dentro do Vistual Studio 2022
    Usar o Terminal para realizar o comando:
-   cd 
-   Usar o comando para Instalar ou verificar se já está instalado o Angular:
-   npm install -g @angular/cli@latest
+
+cd .\DotNetApiMaxima\
+
+dotnet run
+
+#### 9° Passo: Executar o Frontend com VS Code:
+Open Folder \DotNetApiMaxima\
+cd Frontend
+ng serve
+
+
 
 
