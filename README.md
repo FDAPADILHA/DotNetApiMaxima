@@ -6,7 +6,8 @@ https://via.placeholder.com/900x300.png?text=Cadastro+de+Produtos+CRUD
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
 ## Tecnologias Utilizadas
-- Angular 8.0
+- Node.js 22.13
+- Angular 10.9.2
 - .NET 8.0
 - Banco de Dados Oracle
 
@@ -27,31 +28,26 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 ---
 
 ## Requisitos Técnicos
-- **Frontend**: Angular 8.0
-- **Backend**: Dois microsserviços:
-  - Web Service: Angular 8.0
+- **Frontend**: Angular 10.9.2 ou versões superiores + Node.js 22.13
+- **Backend**:
   - Serviço API: .NET Core 8.0 ou versões anteriores.
 - **Banco de Dados**: Oracle para persistência de informações.
-- **Adicionais**:
-  - Documentação detalhada com scripts de instalação.
-  - Endpoints da API:
-    - `GET /products`: Obter todos os produtos.
-    - `POST /products`: Adicionar ou atualizar produtos.
-    - `GET /departments`: Obter lista de departamentos.
 
 ---
 
 ## Diagrama Arquitetural
 
 ```plaintext
-+---------------------+          +-----------------+
-|       Frontend      |<-------->|   Web Service   |
-|      Angular 8.0    |          |   Angular 8.0   |
-+---------------------+          +-----------------+
-          |                           |
-          |                           |
-          |     +-----------------+   |
-          +---->|   Serviço API   |---+
++-----------------------+          +-----------------+
+|       Usuário         |<-------->|   Frontend      |
+|     (Navegador)       |          |  Node.js 22.13  |
++-----------------------+          |     +           |
+          |                        | Angular 10.9.2  |
+          |                        +-----------------+
+          |                               |
+          |                               |
+          |     +-----------------+     |
+          +---->|   Serviço API   |-----+
                 | (.NET Core 8.0) |
                 +-----------------+
                           |
@@ -91,7 +87,7 @@ Instalar a IDE SQL Developer:
 
 Link para Download -> https://www.oracle.com/br/database/sqldeveloper/technologies/download/
 
-Oracle IDE 23.1.1.345.2114 ou versões acima
+Oracle IDE 23.1.1.345.2114 ou versões superiores
 
 Recomendo instalar com a JDK incluída: Windows 64-bit with JDK 17 included
 
@@ -151,8 +147,8 @@ Dentro do arquivo "create_pkg.sql" consta outro passo a passo para executar a PK
 
 #### 5° Passo: Popular os dados nas tabelas:
 
--- Departamentos
 ```plaintext
+-- Departamentos
 INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 1, 'MOUSES', 'A');
 INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 2, 'TECLADOS', 'A');
 INSERT INTO MXSDEPARTAMENTO (IDDEPTO, CODDEPTO, DESCRICAO, STATUS) VALUES (NULL, 3, 'MONITORES', 'A');
@@ -164,6 +160,18 @@ INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, COD
 INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (12, 'MON-ULTRAWIDE12', 'MONITOR ULTRAWIDE 29"', 3, 1299.99, 'I', 0);
 INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (13, 'HEAD-GAMER13', 'HEADSET 7.1 SURROUND', 4, 320.00, 'A', 0);
 INSERT INTO MXSPRODUTO (IDPROD, CODPROD, DESCRICAO, CODDEPTO, PRECO, STATUS, CODOPERACAO) VALUES (14, 'CADE-GAMER14', 'CADEIRA ERGONOMICA PRETA', 5, 850.99, 'A', NULL);
+
+-- Usuarios
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Maria Rodrigues', 'renan.lima', 't2g2ct', 'A');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Lúcia Silva', 'lucas.santos', 'swgnvq', 'I');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Ana Alves', 'lúcia.pereira', '9d7sdf', 'A');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Ana Rodrigues', 'carlos.rodrigues', 'ohrnwk', 'I');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Renan Mendes', 'carlos.lima', '4oq9fp', 'I');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Lúcia Pereira', 'julia.rodrigues', 'jsajma', 'I');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('João Lima', 'julia.alves', 'iycxo5', 'A');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Maria Santos', 'lucas.rodrigues', '2cta27', 'A');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('João Mendes', 'marta.santos', 'fiwopf', 'A');
+INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Pedro Pereira', 'joão.alves', '7eytkw', 'I');
 ```
 
 #### 6° Passo Instalação do NODE.JS:
