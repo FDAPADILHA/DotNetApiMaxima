@@ -16,6 +16,9 @@ namespace DotNetApiMaxima.Config
         }
 
         public DbSet<Produto> Produto { get; set; }
+        public DbSet<Departamento> Departamento { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+
 
         // Configuração da conexão com o banco de dados
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -34,8 +37,10 @@ namespace DotNetApiMaxima.Config
         {
             base.OnModelCreating(modelBuilder);
 
-            // Aplica as configurações do Produto
+            modelBuilder.ApplyConfiguration(new UsuarioMapping());
+            modelBuilder.ApplyConfiguration(new DepartamentoMappging());
             modelBuilder.ApplyConfiguration(new ProdutoMapping());
+           
 
         }
 

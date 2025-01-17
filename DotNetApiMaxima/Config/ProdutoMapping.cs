@@ -17,7 +17,7 @@ namespace DotNetApiMaxima.Config
 
             builder.Property(p => p.Codprod)
                 .HasColumnName("CODPROD")
-                .IsRequired();
+                .IsRequired(true);
 
             builder.Property(p => p.Descricao)
                 .HasColumnName("DESCRICAO")
@@ -26,15 +26,16 @@ namespace DotNetApiMaxima.Config
 
             builder.Property(p => p.Coddepto)
                 .HasColumnName("CODDEPTO")
-                .IsRequired();
+                .IsRequired(true);
 
             builder.Property(p => p.Preco)
                 .HasColumnName("PRECO")
-                .IsRequired();
+                .IsRequired(true);
 
             builder.Property(p => p.Status)
                 .HasColumnName("STATUS")
-                .IsRequired(false);
+                .IsRequired(true)
+                .HasMaxLength(1);
 
             builder.Property(p => p.Codoperacao)
                 .HasColumnName("CODOPERACAO")

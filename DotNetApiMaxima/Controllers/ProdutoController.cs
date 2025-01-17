@@ -14,10 +14,7 @@ namespace DotNetApiMaxima.Controllers
     {
         private readonly Contexto _contexto;
 
-        public ProdutoController(Contexto contexto)
-        {
-            _contexto = contexto;
-        }
+        public ProdutoController(Contexto contexto) => _contexto = contexto;
 
         /*########################################################################################################################################################
         *******************************************************   // GET: api/Produto/ListarProdutosTodos   *******************************************************
@@ -158,6 +155,7 @@ namespace DotNetApiMaxima.Controllers
         /*########################################################################################################################################################
         *******************************************************   // PUT: api/Produto/AtualizarProdutos   *******************************************************
         ########################################################################################################################################################*/
+
         public class ProdutoAtualizarRequest
         {
             public required string Codprod { get; set; }
@@ -175,23 +173,19 @@ namespace DotNetApiMaxima.Controllers
         {
             try
             {
-                // Validando cada produto
                 foreach (var produto in produtos)
                 {
-                    // Validando se o código do produto é informado
                     if (string.IsNullOrEmpty(produto.Codprod))
                         return BadRequest($"O código do produto é obrigatório para a atualização.");
 
                 }
 
-                // Atualizando os produtos
                 foreach (var produto in produtos)
                 {
                     var sql = new StringBuilder("UPDATE MXSPRODUTO SET ");
 
                     var parametros = new List<OracleParameter>();
 
-                    // Condicionalmente adiciona os campos para atualização
                     if (!string.IsNullOrEmpty(produto.Descricao))
                     {
                         sql.Append("DESCRICAO = :Descricao, ");
@@ -232,10 +226,8 @@ namespace DotNetApiMaxima.Controllers
                     // Adicionando o parâmetro para o código do produto
                     parametros.Add(new OracleParameter(":Codprod", produto.Codprod));
 
-                    // Executando o comando SQL para atualizar o produto
                     var rowsAffected = await _contexto.Database.ExecuteSqlRawAsync(sql.ToString(), parametros.ToArray());
 
-                    // Se nenhum produto for atualizado, retorna erro
                     if (rowsAffected == 0)
                     {
                         return NotFound($"Produto com código {produto.Codprod} não encontrado.");
@@ -246,7 +238,6 @@ namespace DotNetApiMaxima.Controllers
             }
             catch (OracleException ex)
             {
-                // Log do erro
                 Console.WriteLine($"Erro ao atualizar os produtos: {ex.Message}");
                 return StatusCode(500, new { message = "Erro ao atualizar os produtos", error = ex.Message });
             }
@@ -255,6 +246,7 @@ namespace DotNetApiMaxima.Controllers
         /*########################################################################################################################################################
         *******************************************************   // DELETE: api/Produto/InativarProdutos   *******************************************************
         ########################################################################################################################################################*/
+
         public class ProdutoInativarrRequest
         {
             public required string Codprod { get; set; }
@@ -417,14 +409,6 @@ namespace DotNetApiMaxima.Controllers
                 return StatusCode(500, new { Message = "Erro interno no servidor.", Details = ex.Message });
             }
         }
-
-
-
-
-
-
-
-
 
     }
 }

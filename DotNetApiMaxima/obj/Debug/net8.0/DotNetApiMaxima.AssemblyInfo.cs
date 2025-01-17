@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotNetApiMaxima")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9013246f35a76962041c23d7865ff73633f8617")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e3788d1a09118e89b79eaccf10b10aa21a97938")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotNetApiMaxima")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotNetApiMaxima")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
