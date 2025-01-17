@@ -18,7 +18,7 @@ export class DepartamentoComponent implements OnInit {
 
   visibilidadeTabela: boolean = true;
   visibilidadeFormulario: boolean = false;
-  
+
   modalRef: BsModalRef;
 
   constructor(
@@ -29,13 +29,24 @@ export class DepartamentoComponent implements OnInit {
   ngOnInit(): void {
     this.carregarDepartamentos();
   }
-
+  
   carregarDepartamentos(): void {
-    this.departamentoService.ListarDepartamentoTodos().subscribe((resultado) => {
-      this.departamentos = resultado;
-    });
+    this.departamentoService.ListarDepartamentoTodos().subscribe(
+      (resultado) => {
+        if (resultado && resultado.length > 0) {
+          this.departamentos = resultado;
+        } else {
+          alert('Nenhum departamento encontrado.');
+          this.departamentos = []; // Garante que a tabela não exiba dados antigos.
+        }
+      },
+      (erro) => {
+        console.error('Erro ao carregar departamentos:', erro);
+        alert('Erro ao carregar os departamentos. Tente novamente mais tarde.');
+      }
+    );
   }
-
+  
   ExibirFormularioCadastro(): void {
     this.visibilidadeTabela = false;
     this.visibilidadeFormulario = true;
@@ -43,10 +54,10 @@ export class DepartamentoComponent implements OnInit {
     this.formulario = new FormGroup({
       Coddepto: new FormControl(null),
       Descricao: new FormControl(null),
-      Status: new FormControl(null),
+      Status: new FormControl('A'), // Define um status padrão como "Ativo".
     });
   }
-
+  
   ExibirFormularioAtualizacao(departamento: Departamento): void {
     this.visibilidadeTabela = false;
     this.visibilidadeFormulario = true;
@@ -66,21 +77,25 @@ export class DepartamentoComponent implements OnInit {
   EnviarFormulario(): void {
     const departamento: Departamento = this.formulario.value;
 
+    // Verifique se o Coddepto existe para diferenciar entre criação e atualização
     if (departamento.Coddepto) {
-      this.departamentoService.AdicionarDepartamentos([departamento]).subscribe(() => {
-        this.visibilidadeFormulario = false;
-        this.visibilidadeTabela = true;
-        alert('Departamento cadastrado com sucesso');
-        this.carregarDepartamentos();
-      });
-    } else {
-      this.departamentoService.AtualizarDepartamentos([departamento]).subscribe(() => {
+      // Atualizar
+      this.departamentoService.AtualizarDepartamentos([departamento]).subscribe(() => {  // Coloque o departamento dentro de um array
         this.visibilidadeFormulario = false;
         this.visibilidadeTabela = true;
         alert('Departamento atualizado com sucesso');
         this.carregarDepartamentos();
       });
+    } else {
+      // Adicionar
+      this.departamentoService.AdicionarDepartamentos([departamento]).subscribe(() => {  // Coloque o departamento dentro de um array
+        this.visibilidadeFormulario = false;
+        this.visibilidadeTabela = true;
+        alert('Departamento cadastrado com sucesso');
+        this.carregarDepartamentos();
+      });
     }
+    
   }
 
   Voltar(): void {
@@ -96,11 +111,13 @@ export class DepartamentoComponent implements OnInit {
 
   ExcluirDepartamentos(): void {
     const departamento: Departamento = { Coddepto: this.coddepto, Descricao: this.descricao, Status: 'Inativo' };
-
+  
+    // Envolva o objeto em um array
     this.departamentoService.ExcluirDepartamentos([departamento]).subscribe(() => {
       this.modalRef.hide();
       alert('Departamento excluído com sucesso');
       this.carregarDepartamentos();
     });
   }
+  
 }

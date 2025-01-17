@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DepartamentoService {
-  url = 'https://localhost:5103/api/Departamento';
+  url = 'http://localhost:5103/api/Departamento';
 
   constructor(private http: HttpClient) {}
 
