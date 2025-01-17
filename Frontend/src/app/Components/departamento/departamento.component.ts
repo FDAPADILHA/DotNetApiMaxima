@@ -104,12 +104,31 @@ export class DepartamentoComponent implements OnInit {
   }
 
   ExcluirDepartamentos(): void {
-    const departamento: Departamento = { Coddepto: this.coddepto, Descricao: this.descricao, Status: 'Inativo' };
-
-    this.departamentoService.ExcluirDepartamentos([departamento]).subscribe(() => {
-      this.modalRef.hide();
-      alert('Departamento excluído com sucesso');
-      this.carregarDepartamentos();
-    });
+    if (!this.coddepto) {
+      alert("Código do departamento não fornecido.");
+      console.log("Valor de this.coddepto:", this.coddepto);  // Para verificar o valor
+      return;
+    }
+  
+    const departamentoExcluirRequest = { Coddepto: this.coddepto };
+  
+    this.departamentoService.ExcluirDepartamentos([departamentoExcluirRequest]).subscribe(
+      () => {
+        this.modalRef.hide();
+        alert('Departamento excluído com sucesso');
+        this.carregarDepartamentos(); // Verifique se esse método está funcionando corretamente
+      },
+      (erro) => {
+        console.error("Erro ao excluir departamento", erro);
+        if (erro.error && erro.error.errors) {
+          alert(`Erro de validação: ${JSON.stringify(erro.error.errors)}`);
+        } else {
+          alert('Ocorreu um erro ao excluir o departamento.');
+        }
+      }
+    );
   }
+  
+
+
 }
