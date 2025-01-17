@@ -1,5 +1,5 @@
 export class Departamento {
-    Coddepto: number;
+    Coddepto: string;
     Descricao: string;
     Status: string;
     

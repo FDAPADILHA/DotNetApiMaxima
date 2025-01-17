@@ -8,10 +8,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { departamentoComponent } from './components/departamento/departamento.component';
+import { DepartamentoComponent } from './components/departamento/departamento.component';
 
 @NgModule({
-  declarations: [AppComponent, departamentoComponent],
+  declarations: [AppComponent, DepartamentoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

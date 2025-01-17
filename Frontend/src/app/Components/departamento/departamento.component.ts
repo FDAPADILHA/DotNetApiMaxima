@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { DepartamentoService } from './departamento.service';
+import { DepartamentoService } from 'src/app/departamento.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Departamento } from 'src/app/Departamento';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -9,24 +9,30 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   templateUrl: './departamento.component.html',
   styleUrls: ['./departamento.component.css'],
 })
-export class departamentoComponent implements OnInit {
-  formulario: any;
+export class DepartamentoComponent implements OnInit {
+  formulario: FormGroup;
   tituloFormulario: string;
-  departamento: Departamento[];
-  Descricao: string;
-  Coddepto: string;
+  departamentos: Departamento[] = [];
+  descricao: string;
+  coddepto: string;
 
   visibilidadeTabela: boolean = true;
-  visibilidadeFormulario: boolean = false; 
+  visibilidadeFormulario: boolean = false;
   
   modalRef: BsModalRef;
 
-  constructor(private DepartamentoService: DepartamentoService,
-    private modalService: BsModalService) {}
+  constructor(
+    private departamentoService: DepartamentoService,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit(): void {
-    this.DepartamentoService.ListarDepartamentoTodos().subscribe((resultado) => {
-      this.departamento = resultado;
+    this.carregarDepartamentos();
+  }
+
+  carregarDepartamentos(): void {
+    this.departamentoService.ListarDepartamentoTodos().subscribe((resultado) => {
+      this.departamentos = resultado;
     });
   }
 
@@ -37,21 +43,22 @@ export class departamentoComponent implements OnInit {
     this.formulario = new FormGroup({
       Coddepto: new FormControl(null),
       Descricao: new FormControl(null),
-      Status: new FormControl(null)
+      Status: new FormControl(null),
     });
   }
 
-  ExibirFormularioAtualizacao(departamento): void {
+  ExibirFormularioAtualizacao(departamento: Departamento): void {
     this.visibilidadeTabela = false;
     this.visibilidadeFormulario = true;
 
-    this.DepartamentoService.ConsultarDepartamentos(departamento).subscribe((resultado) => {
-      this.tituloFormulario = `Atualizar ${resultado.Coddepto} ${resultado.Descricao}`;
+    this.departamentoService.ConsultarDepartamentos([departamento.Coddepto]).subscribe((resultado) => {
+      const dept = resultado[0];  // Supondo que o retorno seja um array com o departamento encontrado
+      this.tituloFormulario = `Atualizar ${dept.Coddepto} - ${dept.Descricao}`;
 
       this.formulario = new FormGroup({
-        Coddepto: new FormControl(resultado.Coddepto),
-        Descricao: new FormControl(resultado.Descricao),
-        Status: new FormControl(resultado.Status),
+        Coddepto: new FormControl(dept.Coddepto),
+        Descricao: new FormControl(dept.Descricao),
+        Status: new FormControl(dept.Status),
       });
     });
   }
@@ -59,23 +66,19 @@ export class departamentoComponent implements OnInit {
   EnviarFormulario(): void {
     const departamento: Departamento = this.formulario.value;
 
-    if (departamento.Coddepto > 0) {
-      this.DepartamentoService.AtualizarDepartamentos(departamento).subscribe((resultado) => {
+    if (departamento.Coddepto) {
+      this.departamentoService.AdicionarDepartamentos([departamento]).subscribe(() => {
+        this.visibilidadeFormulario = false;
+        this.visibilidadeTabela = true;
+        alert('Departamento cadastrado com sucesso');
+        this.carregarDepartamentos();
+      });
+    } else {
+      this.departamentoService.AtualizarDepartamentos([departamento]).subscribe(() => {
         this.visibilidadeFormulario = false;
         this.visibilidadeTabela = true;
         alert('Departamento atualizado com sucesso');
-        this.DepartamentoService.ListarDepartamentoTodos().subscribe((registros) => {
-          this.departamento = registros;
-        });
-      });
-    } else {
-      this.DepartamentoService.AdicionarDepartamentos(departamento).subscribe((resultado) => {
-        this.visibilidadeFormulario = false;
-        this.visibilidadeTabela = true;
-        alert('Departamento inserido com sucesso');
-        this.DepartamentoService.ListarDepartamentosTodos().subscribe((registros) => {
-          this.departamento = registros;
-        });
+        this.carregarDepartamentos();
       });
     }
   }
@@ -85,19 +88,19 @@ export class departamentoComponent implements OnInit {
     this.visibilidadeFormulario = false;
   }
 
-  ExibirConfirmacaoExclusao(Coddepto, Descricao, conteudoModal: TemplateRef<any>): void {
+  ExibirConfirmacaoExclusao(Coddepto: string, Descricao: string, conteudoModal: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(conteudoModal);
-    this.Coddepto = Coddepto;
-    this.Descricao = Descricao;
+    this.coddepto = Coddepto;
+    this.descricao = Descricao;
   }
 
-  ExcluirDepartamentos(Coddepto){
-    this.DepartamentoService.ExcluirDepartamentos(Coddepto).subscribe(resultado => {
+  ExcluirDepartamentos(): void {
+    const departamento: Departamento = { Coddepto: this.coddepto, Descricao: this.descricao, Status: 'Inativo' };
+
+    this.departamentoService.ExcluirDepartamentos([departamento]).subscribe(() => {
       this.modalRef.hide();
       alert('Departamento excluído com sucesso');
-      this.DepartamentoService.ListarDepartamentosTodos().subscribe(registros => {
-        this.departamento = registros;
-      });
+      this.carregarDepartamentos();
     });
   }
 }
