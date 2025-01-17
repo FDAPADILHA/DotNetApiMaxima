@@ -4,6 +4,6 @@
     "\\DotNetApiMaxima",
     "\\DotNetApiMaxima\\Controllers"
   ],
-  "SelectedNode": "\\DotNetApiMaxima\\Program.cs",
+  "SelectedNode": "\\DotNetApiMaxima\\Controllers\\DepartamentoController.cs",
   "PreviewInSolutionExplorer": false
 }
