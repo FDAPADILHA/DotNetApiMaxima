@@ -15,6 +15,7 @@ export class DepartamentoComponent implements OnInit {
   departamentos: Departamento[] = [];
   descricao: string;
   coddepto: string;
+  status: string;
 
   visibilidadeTabela: boolean = true;
   visibilidadeFormulario: boolean = false;
@@ -29,10 +30,11 @@ export class DepartamentoComponent implements OnInit {
   ngOnInit(): void {
     this.carregarDepartamentos();
   }
-  
+
   carregarDepartamentos(): void {
     this.departamentoService.ListarDepartamentoTodos().subscribe(
       (resultado) => {
+        console.log('Dados retornados da API:', resultado); // Log dos dados retornados
         if (resultado && resultado.length > 0) {
           this.departamentos = resultado;
         } else {
@@ -45,8 +47,8 @@ export class DepartamentoComponent implements OnInit {
         alert('Erro ao carregar os departamentos. Tente novamente mais tarde.');
       }
     );
-  }
-  
+  }  
+
   ExibirFormularioCadastro(): void {
     this.visibilidadeTabela = false;
     this.visibilidadeFormulario = true;
@@ -54,48 +56,40 @@ export class DepartamentoComponent implements OnInit {
     this.formulario = new FormGroup({
       Coddepto: new FormControl(null),
       Descricao: new FormControl(null),
-      Status: new FormControl('A'), // Define um status padrão como "Ativo".
+      Status: new FormControl('A'), // Status padrão
     });
   }
-  
+
   ExibirFormularioAtualizacao(departamento: Departamento): void {
     this.visibilidadeTabela = false;
     this.visibilidadeFormulario = true;
+    this.tituloFormulario = `Atualizar ${departamento.Coddepto} - ${departamento.Descricao}`;
 
-    this.departamentoService.ConsultarDepartamentos([departamento.Coddepto]).subscribe((resultado) => {
-      const dept = resultado[0];  // Supondo que o retorno seja um array com o departamento encontrado
-      this.tituloFormulario = `Atualizar ${dept.Coddepto} - ${dept.Descricao}`;
-
-      this.formulario = new FormGroup({
-        Coddepto: new FormControl(dept.Coddepto),
-        Descricao: new FormControl(dept.Descricao),
-        Status: new FormControl(dept.Status),
-      });
+    this.formulario = new FormGroup({
+      Coddepto: new FormControl(departamento.Coddepto),
+      Descricao: new FormControl(departamento.Descricao),
+      Status: new FormControl(departamento.Status),
     });
   }
 
   EnviarFormulario(): void {
     const departamento: Departamento = this.formulario.value;
 
-    // Verifique se o Coddepto existe para diferenciar entre criação e atualização
     if (departamento.Coddepto) {
-      // Atualizar
-      this.departamentoService.AtualizarDepartamentos([departamento]).subscribe(() => {  // Coloque o departamento dentro de um array
+      this.departamentoService.AdicionarDepartamentos([departamento]).subscribe(() => {
         this.visibilidadeFormulario = false;
         this.visibilidadeTabela = true;
-        alert('Departamento atualizado com sucesso');
+        alert('Departamento Adicionado com sucesso');
         this.carregarDepartamentos();
       });
     } else {
-      // Adicionar
-      this.departamentoService.AdicionarDepartamentos([departamento]).subscribe(() => {  // Coloque o departamento dentro de um array
+      this.departamentoService.AtualizarDepartamentos([departamento]).subscribe(() => {
         this.visibilidadeFormulario = false;
         this.visibilidadeTabela = true;
-        alert('Departamento cadastrado com sucesso');
+        alert('Departamento Atualizado com sucesso');
         this.carregarDepartamentos();
       });
     }
-    
   }
 
   Voltar(): void {
@@ -103,21 +97,19 @@ export class DepartamentoComponent implements OnInit {
     this.visibilidadeFormulario = false;
   }
 
-  ExibirConfirmacaoExclusao(Coddepto: string, Descricao: string, conteudoModal: TemplateRef<any>): void {
+  ExibirConfirmacaoExclusao(departamento: Departamento, conteudoModal: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(conteudoModal);
-    this.coddepto = Coddepto;
-    this.descricao = Descricao;
+    this.coddepto = departamento.Coddepto;
+    this.descricao = departamento.Descricao;
   }
 
   ExcluirDepartamentos(): void {
     const departamento: Departamento = { Coddepto: this.coddepto, Descricao: this.descricao, Status: 'Inativo' };
-  
-    // Envolva o objeto em um array
+
     this.departamentoService.ExcluirDepartamentos([departamento]).subscribe(() => {
       this.modalRef.hide();
       alert('Departamento excluído com sucesso');
       this.carregarDepartamentos();
     });
   }
-  
 }
