@@ -4,8 +4,8 @@
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
 ## Tecnologias Utilizadas
-- Node.js 22.13
-- Angular 10.9.2
+- Node.js 16.20.2
+- Angular 12.2.18
 - .NET 8.0
 - Banco de Dados Oracle
 
@@ -38,9 +38,9 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 ```plaintext
 +-----------------------+          +-----------------+
 |       Usuário         |<-------->|   Frontend      |
-|     (Navegador)       |          |  Node.js 22.13  |
+|     (Navegador)       |          |  Node.js 16.20  |
 +-----------------------+          |     +           |
-          |                        | Angular 10.9.2  |
+          |                        | Angular 12.2.18 |
           |                        +-----------------+
           |                               |
           |                               |
