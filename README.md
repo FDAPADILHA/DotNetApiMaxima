@@ -1,7 +1,5 @@
 # E-commerce Máxima (CRUD)
 
-https://via.placeholder.com/900x300.png?text=Cadastro+de+Produtos+CRUD
-
 ## Visão Geral
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
