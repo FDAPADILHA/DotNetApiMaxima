@@ -6,7 +6,7 @@
       </button>
     </div>
 
-    <hr />
+    <hr/>
 
     <table class="table table-striped table-hover table-sm" *ngIf="departamentos.length">
       <thead>
@@ -19,9 +19,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let departamento of departamentos">
-          <td>{{ departamento.Coddepto }}</td>
-          <td>{{ departamento.Descricao }}</td>
-          <td>{{ departamento.Status }}</td>
+          <td>{{ departamento.coddepto }}</td>
+          <td>{{ departamento.descricao }}</td>
+          <td>{{ departamento.status }}</td>
           <td>
             <button type="button" class="btn btn-sm btn-outline-info" (click)="ExibirFormularioAtualizacao(departamento)">
               Atualizar

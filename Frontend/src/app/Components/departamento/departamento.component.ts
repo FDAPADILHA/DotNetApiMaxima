@@ -9,6 +9,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   templateUrl: './departamento.component.html',
   styleUrls: ['./departamento.component.css'],
 })
+
 export class DepartamentoComponent implements OnInit {
   formulario: FormGroup;
   tituloFormulario: string;
@@ -29,6 +30,9 @@ export class DepartamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarDepartamentos();
+    this.departamentoService.ListarDepartamentoTodos().subscribe((data: any[]) => {
+      this.departamentos = data;
+    });
   }
 
   carregarDepartamentos(): void {
