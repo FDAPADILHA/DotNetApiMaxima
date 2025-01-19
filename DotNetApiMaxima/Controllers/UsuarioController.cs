@@ -23,25 +23,29 @@ namespace DotNetApiMaxima.Controllers
             _configuration = configuration;
         }
 
+        /*########################################################################################################################################################
+        *******************************************************   // POST: api/Usuario/Login   *******************************************************
+        ########################################################################################################################################################*/
+
         [HttpPost("Login")]
-        [ProducesResponseType(200, Type = typeof(string))]
-        [ProducesResponseType(401, Type = typeof(string))]
+        [ProducesResponseType(200, Type = typeof(object))]
+        [ProducesResponseType(401, Type = typeof(object))]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             // SQL para validar o login e senha
             var sql = @"
-                SELECT idusuario, nome, status
-                FROM MXSUSUARIOS
-                WHERE login = :Login
-                AND senha = :Senha
-                AND status = 'A'
-                AND ROWNUM = 1";
+        SELECT idusuario, nome, status
+        FROM MXSUSUARIOS
+        WHERE login = :Login
+        AND senha = :Senha
+        AND status = 'A'
+        AND ROWNUM = 1";
 
             var parameters = new List<OracleParameter>
-            {
-                new OracleParameter(":Login", loginRequest.Login),
-                new OracleParameter(":Senha", loginRequest.Senha)
-            };
+    {
+        new OracleParameter(":Login", loginRequest.Login),
+        new OracleParameter(":Senha", loginRequest.Senha)
+    };
 
             try
             {
@@ -67,7 +71,9 @@ namespace DotNetApiMaxima.Controllers
                                 };
 
                                 var token = GenerateJwtToken(usuario);
-                                return Ok(new { Token = token });
+
+                                // Retornando tanto o token quanto as informações do usuário
+                                return Ok(new { Token = token, Usuario = usuario });
                             }
                             else
                             {
@@ -83,7 +89,7 @@ namespace DotNetApiMaxima.Controllers
             }
         }
 
-        private string GenerateJwtToken(Usuario usuario)
+        private object GenerateJwtToken(Usuario usuario)
         {
             // Verifica se a chave JWT está configurada
             var keyString = _configuration["Jwt:Key"];
@@ -97,10 +103,10 @@ namespace DotNetApiMaxima.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
-                new Claim(ClaimTypes.Name, usuario.Nome),
-                new Claim(ClaimTypes.Role, "User") // Adiciona um papel para o usuário
-            };
+        new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+        new Claim(ClaimTypes.Name, usuario.Nome),
+        new Claim(ClaimTypes.Role, "User") // Adiciona um papel para o usuário
+    };
 
             var expiration = DateTime.UtcNow.AddHours(10);
 
@@ -112,7 +118,12 @@ namespace DotNetApiMaxima.Controllers
                 signingCredentials: credentials
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            // Retorna o token como string e as informações do usuário
+            return new
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Usuario = usuario
+            };
         }
 
         public class LoginRequest
@@ -120,8 +131,6 @@ namespace DotNetApiMaxima.Controllers
             public string Login { get; set; }
             public string Senha { get; set; }
         }
-    
-
 
         /*########################################################################################################################################################
         *******************************************************   // GET: api/Usuario/ListarUsuariosTodos   *******************************************************

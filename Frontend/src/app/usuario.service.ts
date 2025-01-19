@@ -1,31 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Definindo um modelo de resposta da API
+// Definindo o modelo da resposta do login
 export interface LoginResponse {
-  token: string; // Ou qualquer outro campo que sua API retorne após o login
-  usuario: { id: number, nome: string, login: string, status: string };
+  token: string;  // O token JWT gerado
+  usuario: { id: number; nome: string; login: string; status: string }; // Informações do usuário
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:5103/api/Usuario'; // Ajuste para a URL correta da sua API
+  private apiUrl = 'http://localhost:5103/api/Usuario'; // URL da sua API
 
   constructor(private http: HttpClient) {}
 
-  // Método para login
-  login(loginData: { username: string; password: string }): Observable<LoginResponse> {
-    // Aqui, utilizando POST, com o loginData no corpo da requisição
+  // Método de login
+  login(loginData: { login: string; senha: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/Login`, loginData);
   }
 
-  // Método para consultar os usuários após o login
+  // Método para consultar os usuários (exemplo de outro método protegido, mas não é necessário agora)
   consultarUsuarios(ids: number[]): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/ConsultarUsuarios`, {
-      params: { id: ids.join(',') } // Enviando os ids como parâmetro
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` };
+
+    return this.http.get(`${this.apiUrl}/ConsultarUsuarios`, {
+      headers,
+      params: { id: ids.join(',') }
     });
   }
 }
