@@ -4,7 +4,7 @@
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
 ## Tecnologias Utilizadas
-- Node.js 16.20.2
+- Node.js 18.20.5
 - Angular 12.2.18
 - .NET 8.0
 - Banco de Dados Oracle
@@ -26,7 +26,7 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 ---
 
 ## Requisitos Técnicos
-- **Frontend**: Angular 10.9.2 ou versões superiores + Node.js 22.13
+- **Frontend**: Angular 10.9.2 ou versões superiores + Node.js 18.20.5
 - **Backend**:
   - Serviço API: .NET Core 8.0 ou versões anteriores.
 - **Banco de Dados**: Oracle para persistência de informações.
@@ -37,8 +37,8 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 
 ```plaintext
 +-----------------------+          +-----------------+
-|       Usuário         |<-------->|   Frontend      |
-|     (Navegador)       |          |  Node.js 16.20  |
+|       Usuário         |<-------->|     Frontend    |
+|     (Navegador/API)   |          | Node.js 18.20.5 |
 +-----------------------+          |     +           |
           |                        | Angular 12.2.18 |
           |                        +-----------------+
@@ -173,7 +173,7 @@ INSERT INTO MXSUSUARIOS (NOME, LOGIN, SENHA, STATUS) VALUES ('Pedro Pereira', 'j
 ```
 
 #### 6° Passo Instalação do NODE.JS:
-Instalar o Node.js v16.20.2 (versão 23 não suportada pelo Angular)
+Instalar o Node.js v18.20.5 (versão 23 não suportada pelo Angular)
 Link para Download -> https://nodejs.org/pt
 
 Obs: Processo de instação next, next e finish e será instalado a partir de um arquivo que você fez Download e salvou na sua máquina
@@ -198,7 +198,7 @@ dotnet run
 #### 9° Passo: Executar o Frontend com VS Code:
 Open Folder \DotNetApiMaxima\
 cd Frontend
-ng serve
+npm start
 
 
 
