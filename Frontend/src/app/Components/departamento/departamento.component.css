@@ -1,0 +1,9 @@
+/* Ocultar o campo 'coddepto' apenas quando estiver no modo de edição */
+.formulario-coddepto {
+    display: block;
+  }
+  
+  .formulario-coddepto.hidden {
+    display: none; /* Esconde o campo, mas mantém o valor no formulário */
+  }
+  

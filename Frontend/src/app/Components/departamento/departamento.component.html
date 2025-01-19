@@ -44,15 +44,14 @@
       <hr />
 
       <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
-        <div class="form-group">
+        <div class="form-group formulario-coddepto" [ngClass]="{ 'hidden': emModoEdicao }">
           <label>Código do Departamento</label>
           <input
             type="text"
             class="form-control form-control-sm"
             formControlName="coddepto"
-            [attr.disabled]="emModoEdicao ? true : null"
           />
-        </div>
+        </div>  
 
         <div class="form-group">
           <label>Descrição</label>
@@ -60,7 +59,7 @@
             type="text"
             class="form-control form-control-sm"
             formControlName="descricao"
-            [attr.disabled]="emModoEdicao ? false : null"
+            [disabled]="!emModoEdicao"
           />
         </div>
 
@@ -70,7 +69,7 @@
             type="text"
             class="form-control form-control-sm"
             formControlName="status"
-            [attr.disabled]="emModoEdicao ? false : null"
+            [disabled]="!emModoEdicao" 
           />
         </div>
 
