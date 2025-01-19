@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+/* Remove margens e configura o layout geral */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  /* Garante que o header sempre ocupe o topo */
+  app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #3f51b5; /* Cor de fundo do header */
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  /* Adiciona margem ao conteúdo para evitar sobreposição */
+  .conteudo-departamento {
+    max-width: 800px;
+    margin: 80px auto 0; /* Espaço para o header e centraliza */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px;
+    text-align: center;
+  }
+  

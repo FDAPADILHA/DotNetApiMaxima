@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  app-header {
+    margin-bottom: 60px; /* Espaço abaixo do Header */
+  }
+  
+  router-outlet {
+    display: block;
+    padding: 20px;
+  }
+  

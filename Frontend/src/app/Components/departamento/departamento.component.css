@@ -1,9 +1,35 @@
-/* Ocultar o campo 'coddepto' apenas quando estiver no modo de edição */
 .formulario-coddepto {
     display: block;
+}
+
+.formulario-coddepto.hidden {
+    display: none;
+}
+
+
+.conteudo-departamento {
+    margin-top: 60px;
+    text-align: center;
+    padding: 20px;
   }
   
-  .formulario-coddepto.hidden {
-    display: none; /* Esconde o campo, mas mantém o valor no formulário */
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
   
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .custom-btn {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+  }
+  
+  .custom-btn:hover {
+    background-color: #303f9f;
+  }
