@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\DotNetApiMaxima",
-    "\\DotNetApiMaxima\\Controllers"
+    "\\DotNetApiMaxima\\Controllers",
+    "\\DotNetApiMaxima\\Properties"
   ],
-  "SelectedNode": "\\DotNetApiMaxima\\Controllers\\DepartamentoController.cs",
+  "SelectedNode": "\\DotNetApiMaxima\\Properties\\launchSettings.json",
   "PreviewInSolutionExplorer": false
 }
