@@ -1,6 +1,6 @@
 export class Departamento {
-    Coddepto: string;
-    Descricao: string;
-    Status: string;
+    coddepto: string;
+    descricao: string;
+    status: string;
     
 }
