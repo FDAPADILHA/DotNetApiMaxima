@@ -17,8 +17,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms'; 
+
+
 @NgModule({
-  declarations: [AppComponent, DepartamentoComponent, HeaderComponent],
+  declarations: [AppComponent, DepartamentoComponent, HeaderComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,6 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
+    FormsModule,
     ModalModule.forRoot(),
   ],
   providers: [HttpClientModule, DepartamentoService],

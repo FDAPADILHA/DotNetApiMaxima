@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Pages",
-    "\\wwwroot\\js"
+    "\\Config",
+    "\\Controllers",
+    "\\Middleware",
+    "\\Models"
   ],
-  "SelectedNode": "\\Pages\\Index.cshtml",
+  "SelectedNode": "\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

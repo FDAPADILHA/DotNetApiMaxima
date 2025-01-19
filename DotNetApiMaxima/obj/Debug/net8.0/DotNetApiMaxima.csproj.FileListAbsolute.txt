@@ -90,3 +90,11 @@ C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\scopedcss\project
 C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetAp.DFCB1CC2.Up2Date
 C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\DotNetApiMaxima.genruntimeconfig.cache
 C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\obj\Debug\net8.0\ref\DotNetApiMaxima.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\CRUDMAXIMA\DotNetApiMaxima\DotNetApiMaxima\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
