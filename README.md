@@ -44,8 +44,8 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
           |                        +-----------------+
           |                               |
           |                               |
-          |     +-----------------+     |
-          +---->|   Serviço API   |-----+
+          |     +-----------------+       |
+          +---->|   Serviço API   |-------+
                 | (.NET Core 8.0) |
                 +-----------------+
                           |
@@ -56,26 +56,12 @@ Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo d
 
 ```
 
-# Documentação da API
-
-## Descrição
-Esta API permite gerenciar produtos, incluindo funcionalidades de adicionar, listar, consultar e excluir produtos. Este documento descreve os endpoints disponíveis para consumo.
-
----
-
-## Endpoints Disponíveis
-
-
-Se houver dúvidas, entre em contato com o suporte da API.
-
-
-
 ## Instalação
 
-###Onde baixar o Visual Studio 2022
+### Onde baixar o Visual Studio 2022
 Link para Download -> https://visualstudio.microsoft.com/pt-br/downloads/
 
-###Como Instalar e Configurar o ambiente de dados:
+### Como Instalar e Configurar o ambiente de dados:
 
 Link para Download -> https://www.oracle.com/br/database/technologies/xe-downloads.html
 
@@ -103,7 +89,7 @@ Criando o Table Space:
 
 create tablespace crudecmaxima
  datafile
-   'C:\oraclexe\app\oracle\oradata\XE\crudecmaxima.dbf' 
+   'C:\oraclexepp\oracle\oradata\XE\crudecmaxima.dbf' 
 		size 100m autoextend on next 50m maxsize 500m
    online
    permanent
@@ -191,15 +177,42 @@ npm -v
 Dentro do Vistual Studio 2022
    Usar o Terminal para realizar o comando:
 
-cd .\DotNetApiMaxima\
-
+cd .\DotNetApiMaxima
 dotnet run
 
 #### 9° Passo: Executar o Frontend com VS Code:
-Open Folder \DotNetApiMaxima\
-cd Frontend
+Open Folder \DotNetApiMaximacd Frontend
 npm start
 
+---
 
+## Como Contribuir
 
+Se você deseja contribuir para o projeto, siga as etapas abaixo:
 
+1. Faça um Fork do repositório.
+2. Crie uma nova branch (`git checkout -b minha-contribuicao`).
+3. Faça as mudanças desejadas e commite (`git commit -am 'Adiciona nova funcionalidade'`).
+4. Envie para o repositório remoto (`git push origin minha-contribuicao`).
+5. Abra um Pull Request.
+
+**Boas práticas para contribuição:**
+- Adicione testes automatizados, caso esteja criando uma nova funcionalidade.
+- Certifique-se de que o código esteja bem documentado.
+- Mantenha a formatação consistente com o restante do projeto.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - consulte o [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## Tabela de Conteúdos
+
+1. [Visão Geral](#visão-geral)
+2. [Tecnologias Utilizadas](#tecnologias-utilizadas)
+3. [Funcionalidades Planejadas](#funcionalidades-planejadas)
+4. [Requisitos Técnicos](#requisitos-técnicos)
+5. [Instalação](#instalação)
+6. [Licença](#licença)
+7. [Como Contribuir](#como-contribuir)
