@@ -12,7 +12,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:5103/api/Usuario'; // URL da sua API
+  private apiUrl = 'http://localhost:5103/api/Usuario';
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +21,7 @@ export class UsuarioService {
     return this.http.post<LoginResponse>(`${this.apiUrl}/Login`, loginData);
   }
 
-  // Método para consultar os usuários (exemplo de outro método protegido, mas não é necessário agora)
+  // Método para consultar os usuários protegidos
   consultarUsuarios(ids: number[]): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` };

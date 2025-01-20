@@ -7,7 +7,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redireciona para "login"
   { path: 'login', component: LoginComponent },   // Rota para login
   { path: 'departamento', component: DepartamentoComponent },   // Rota para departamento
-  // outras rotas...
 ];
 
 @NgModule({

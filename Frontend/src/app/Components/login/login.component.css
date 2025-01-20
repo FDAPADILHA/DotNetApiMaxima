@@ -4,6 +4,7 @@
   align-items: center;
   height: 100vh;
   background-color: #f4f7fc;
+  margin-top: -50px;
 }
 
 .login-card {
