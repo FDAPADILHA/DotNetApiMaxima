@@ -21,7 +21,7 @@ namespace DotNetApiMaxima.Middleware
             }
             catch (SecurityTokenExpiredException)
             {
-                // Token expirado
+                
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                 context.Response.ContentType = "application/json";
 
@@ -35,7 +35,7 @@ namespace DotNetApiMaxima.Middleware
             }
             catch (SecurityTokenException)
             {
-                // Token inválido
+                
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                 context.Response.ContentType = "application/json";
 
@@ -49,7 +49,7 @@ namespace DotNetApiMaxima.Middleware
             }
             catch (Exception ex)
             {
-                // Outros erros
+                
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;
                 context.Response.ContentType = "application/json";
 

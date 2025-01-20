@@ -6,6 +6,6 @@
     "\\Middleware",
     "\\Models"
   ],
-  "SelectedNode": "\\Models\\Usuario.cs",
+  "SelectedNode": "\\Middleware\\ExceptionHandlingMiddleware.cs",
   "PreviewInSolutionExplorer": false
 }

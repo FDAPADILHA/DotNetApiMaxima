@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
-import { DepartamentoComponent } from './components/departamento/departamento.component';
+import { DepartamentoComponent } from './Components/departamento/departamento.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redireciona para "login"

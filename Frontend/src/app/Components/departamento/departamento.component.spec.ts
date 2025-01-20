@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { departamentoComponent } from './departamento.component';
+import { DepartamentoComponent } from './departamento.component';
 
 describe('DepartamentoComponent', () => {
-  let component: departamentoComponent;
-  let fixture: ComponentFixture<departamentoComponent>;
+  let component: DepartamentoComponent;
+  let fixture: ComponentFixture<DepartamentoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ departamentoComponent ]
+      declarations: [ DepartamentoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(departamentoComponent);
+    fixture = TestBed.createComponent(DepartamentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +22,4 @@ describe('DepartamentoComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
