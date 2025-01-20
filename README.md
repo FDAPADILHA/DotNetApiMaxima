@@ -1,7 +1,7 @@
 # E-commerce Máxima (CRUD)
 
 <p align="center">
-  <img src="DotNetApiMaxima/Frontend/src/assets/img1.png" width="45%" />
+  <img src="DotNetApiMaxima/DotNetApiMaxima/Frontend/src/assets/img1.png" width="45%" />
   <img src="DotNetApiMaxima/Frontend/src/assets/img2.png" width="45%" />
 </p>
 
