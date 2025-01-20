@@ -31,16 +31,19 @@ export class DepartamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarDepartamentos();
-    this.departamentoService.ListarDepartamentoTodos().subscribe((data: any[]) => {
-      this.departamentos = data;
-    });
+
   }
 
   carregarDepartamentos(): void {
     this.departamentoService.ListarDepartamentoTodos().subscribe(
       (resultado) => {
         if (resultado && resultado.length > 0) {
-          this.departamentos = resultado;
+          // Filtra os departamentos com status 'A'
+          this.departamentos = resultado.filter((departamento: any) => departamento.status === 'A');
+  
+          if (this.departamentos.length === 0) {
+            alert('Nenhum departamento ativo encontrado.');
+          }
         } else {
           alert('Nenhum departamento encontrado.');
           this.departamentos = [];
@@ -52,7 +55,7 @@ export class DepartamentoComponent implements OnInit {
       }
     );
   }
-
+  
   ExibirFormularioCadastro(): void {
     this.visibilidadeTabela = false;
     this.visibilidadeFormulario = true;
