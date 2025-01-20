@@ -1,5 +1,10 @@
 # E-commerce Máxima (CRUD)
 
+<p align="center">
+  <img src="DotNetApiMaxima/Frontend/src/assets/img1.png" width="45%" />
+  <img src="DotNetApiMaxima/Frontend/src/assets/img2.png" width="45%" />
+</p>
+
 ## Visão Geral
 Este projeto implementa uma tela de cadastro de produtos (CRUD) para o módulo de administração de uma plataforma de e-commerce. Ele também inclui o desenvolvimento de uma API que permite o consumo dos dados dos produtos via integração.
 
