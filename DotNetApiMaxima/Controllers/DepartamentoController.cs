@@ -33,6 +33,7 @@ namespace DotNetApiMaxima.Controllers
                     d.Status
                 })
                 .ToListAsync();
+                
 
             if (lista == null || !lista.Any())
             {

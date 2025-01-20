@@ -24,10 +24,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [AppComponent, DepartamentoComponent, HeaderComponent, LoginComponent],
+  declarations: [AppComponent, DepartamentoComponent, HeaderComponent, LoginComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
