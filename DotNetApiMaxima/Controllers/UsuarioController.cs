@@ -34,12 +34,12 @@ namespace DotNetApiMaxima.Controllers
         {
                     // SQL para validar o login e senha
                     var sql = @"
-                SELECT idusuario, nome, status
-                FROM MXSUSUARIOS
-                WHERE login = :Login
-                AND senha = :Senha
-                AND status = 'A'
-                AND ROWNUM = 1";
+                                SELECT idusuario, nome, status
+                                FROM MXSUSUARIOS
+                                WHERE login = :Login
+                                AND senha = :Senha
+                                AND status = 'A'
+                                AND ROWNUM = 1";
 
                 var parameters = new List<OracleParameter>
                 {
