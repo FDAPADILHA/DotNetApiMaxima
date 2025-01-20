@@ -6,10 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  isVisible: boolean = false;
-
+  isVisible: boolean = true;
+  isCadastroVisible: boolean = false; 
   toggleNavbar() {
     this.isVisible = !this.isVisible;
+  }
+
+  toggleCadastroTools() {
+    this.isCadastroVisible = !this.isCadastroVisible;
   }
 
   logout() {

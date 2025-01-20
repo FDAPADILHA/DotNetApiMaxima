@@ -1,10 +1,18 @@
 <button class="toggle-button" (click)="toggleNavbar()">☰</button>
 
 <div class="navbar" [class.hidden]="!isVisible">
-  <button class="logout-button" (click)="logout()">Deslogar</button>
   <div class="tools">
-    <button>Tool 1</button>
-    <button>Tool 2</button>
-    <button>Tool 3</button>
+    <button class="cadastros-button" (click)="toggleCadastroTools()">Cadastros</button>
+    <div class="cadastros-tools" *ngIf="isCadastroVisible">
+      <button class="tool-button">Tool 1</button>
+      <button class="tool-button">Tool 2</button>
+      <button class="tool-button">Tool 3</button>
+    </div>
+  </div>
+
+  <div class="logout-container">
+    <button class="logout-button" (click)="logout()">
+      <i class="material-icons">logout</i>
+    </button>
   </div>
 </div>

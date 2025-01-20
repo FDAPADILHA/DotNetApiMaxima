@@ -10,6 +10,7 @@
     box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* Alinha todo o conteúdo à esquerda */
     gap: 10px;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
@@ -21,15 +22,23 @@
 }
 
 .navbar button {
-    background-color: #444;
+    background-color: #444; /* Cor padrão para botões */
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
+    text-align: left;
+    width: calc(100% - 20px); /* Espaço interno para afastar os botões das bordas */
+    margin: 0 10px 5px 10px; /* Adiciona espaçamento entre botões e bordas */
+    outline: none;
 }
 
 .navbar button:hover {
     background-color: #555;
+}
+
+.navbar button:focus {
+    outline: none;
 }
 
 .toggle-button {
@@ -41,9 +50,65 @@
     border: none;
     padding: 10px;
     cursor: pointer;
-    z-index: 1001; 
+    z-index: 1001;
+}
+
+.toggle-button:focus {
+    outline: none; /* Remove a borda de seleção */
 }
 
 .toggle-button:hover {
     background-color: #444;
+}
+
+.cadastros-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cadastros-tools button {
+    background-color: #555; /* Cor para botões de ferramentas */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.cadastros-tools button:hover {
+    background-color: #666;
+}
+
+.logout-container {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Alinha o botão de logout à esquerda */
+    padding-left: 10px; /* Pequeno espaçamento à esquerda */
+}
+
+.logout-button {
+    background-color: #d9534f; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: calc(100% - 20px); /* Afastamento para não encostar nas bordas */
+    height: 40px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.logout-button i {
+    font-size: 20px;
+}
+
+.logout-button:hover {
+    background-color: #c9302c;
 }
