@@ -18,7 +18,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 import { LoginComponent } from './Components/login/login.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -34,7 +39,12 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    MatCardModule,
     ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [HttpClientModule, DepartamentoService],
   bootstrap: [AppComponent, HeaderComponent],

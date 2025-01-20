@@ -6,12 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isSidebarOpen: boolean = false;
   menuOpen: boolean = false;
-
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;

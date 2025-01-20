@@ -1,24 +1,27 @@
-<div class="container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="username">Usuário:</label>
-      <input type="text" id="login" class="form-control" [(ngModel)]="loginData.login" name="login" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Senha:</label>
-      <input type="password" id="senha" class="form-control" [(ngModel)]="loginData.senha" name="senha" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
-  </form>
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+        
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Login</mat-label>
+          <input matInput type="text" id="login" [(ngModel)]="loginData.login" name="login" required autocomplete="off" #loginInput="ngModel" />
+          <mat-error *ngIf="loginInput.invalid && loginInput.touched">O login é obrigatório</mat-error>
+        </mat-form-field>
 
-  <div *ngIf="mensagemSucesso" class="alert alert-success mt-3">
-    {{ mensagemSucesso }}
-  </div>
-  
-  <div *ngIf="mensagemErro" class="alert alert-danger mt-3">
-    {{ mensagemErro }}
-  </div>
-  
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" id="senha" [(ngModel)]="loginData.senha" name="senha" required autocomplete="off" #senhaInput="ngModel" />
+          <mat-error *ngIf="senhaInput.invalid && senhaInput.touched">A senha é obrigatória</mat-error>
+        </mat-form-field>
+
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">Entrar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
-

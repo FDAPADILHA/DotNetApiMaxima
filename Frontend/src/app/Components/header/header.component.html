@@ -1,21 +1,5 @@
 <mat-toolbar color="primary" class="header">
   <span class="spacer"></span>
-  
-  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
   <span>E-commerce Máxima</span>
 </mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidebar mode="side" [(opened)]="isSidebarOpen">
-    <h3>Opções</h3>
-    <button mat-raised-button color="primary" (click)="cadastroDepartamento()">Cadastros</button>
-    <nav *ngIf="menuOpen" class="menu-dropdown">
-      <ul>
-        <li><a routerLink="/departamento">Departamento</a></li>
-      </ul>
-    </nav>
-  </mat-sidenav>
-</mat-sidenav-container>

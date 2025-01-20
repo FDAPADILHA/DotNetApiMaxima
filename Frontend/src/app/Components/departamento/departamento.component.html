@@ -43,7 +43,7 @@
 <div class="container p-5" *ngIf="visibilidadeFormulario">
   <div class="row">
     <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
-      <h6>{{ tituloFormulario }}</h6>
+      <h4>{{ tituloFormulario }}</h4>
       <hr />
 
       <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
