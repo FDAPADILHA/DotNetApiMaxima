@@ -32,20 +32,20 @@ namespace DotNetApiMaxima.Controllers
         [ProducesResponseType(401, Type = typeof(object))]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
-            // SQL para validar o login e senha
-            var sql = @"
-        SELECT idusuario, nome, status
-        FROM MXSUSUARIOS
-        WHERE login = :Login
-        AND senha = :Senha
-        AND status = 'A'
-        AND ROWNUM = 1";
+                    // SQL para validar o login e senha
+                    var sql = @"
+                SELECT idusuario, nome, status
+                FROM MXSUSUARIOS
+                WHERE login = :Login
+                AND senha = :Senha
+                AND status = 'A'
+                AND ROWNUM = 1";
 
-            var parameters = new List<OracleParameter>
-    {
-        new OracleParameter(":Login", loginRequest.Login),
-        new OracleParameter(":Senha", loginRequest.Senha)
-    };
+                var parameters = new List<OracleParameter>
+                {
+                    new OracleParameter(":Login", loginRequest.Login),
+                    new OracleParameter(":Senha", loginRequest.Senha)
+                };
 
             try
             {
@@ -103,10 +103,10 @@ namespace DotNetApiMaxima.Controllers
 
             var claims = new[]
             {
-        new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
-        new Claim(ClaimTypes.Name, usuario.Nome),
-        new Claim(ClaimTypes.Role, "User") // Adiciona um papel para o usuário
-    };
+                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+                new Claim(ClaimTypes.Name, usuario.Nome),
+                new Claim(ClaimTypes.Role, "User") // Adiciona um papel para o usuário
+            };
 
             var expiration = DateTime.UtcNow.AddHours(10);
 
@@ -122,14 +122,13 @@ namespace DotNetApiMaxima.Controllers
             return new
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Usuario = usuario
             };
         }
 
         public class LoginRequest
         {
-            public string Login { get; set; }
-            public string Senha { get; set; }
+            public required string Login { get; set; }
+            public required string Senha { get; set; }
         }
 
         /*########################################################################################################################################################

@@ -45,6 +45,14 @@ builder.Services.AddControllers(); // Adiciona suporte a Controllers
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
+        // Validando se a chave JWT está configurada para evitar erros
+        var jwtKey = builder.Configuration["Jwt:Key"];
+
+        if (string.IsNullOrEmpty(jwtKey))
+        {
+            throw new InvalidOperationException("A chave 'Jwt:Key' não está configurada.");
+        }
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -53,7 +61,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
         };
     });
 
@@ -68,6 +76,7 @@ builder.Services.AddCors();
 var app = builder.Build();
 
 // Usando Swagger para documentação da API
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -76,17 +85,19 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger"; // Define a rota para o Swagger UI
 });
 
+
 // Usando middleware de exceções
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-// Ordem correta de uso do CORS
+// Configuração do CORS (antes de UseRouting)
+app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+// Configuração do roteamento
 app.UseRouting();
 
 // Usando autenticação JWT
 app.UseAuthentication();  // Adiciona autenticação
 app.UseAuthorization();   // Adiciona autorização
-
-app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.MapControllers(); // Configura os controllers
 
