@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DotNetApiMaxima")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51ed25b6d6f4fc89142acfb81fafcebdf088de16")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79e409645503599494168daf27d8b4f8e3841de3")]
 [assembly: System.Reflection.AssemblyProductAttribute("DotNetApiMaxima")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DotNetApiMaxima")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

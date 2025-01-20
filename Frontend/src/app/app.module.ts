@@ -47,6 +47,6 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule
   ],
   providers: [HttpClientModule, DepartamentoService],
-  bootstrap: [AppComponent, HeaderComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

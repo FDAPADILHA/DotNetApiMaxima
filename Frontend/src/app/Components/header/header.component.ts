@@ -6,13 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  menuOpen: boolean = false;
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  cadastroDepartamento() {
-    console.log('Cadastro de Departamento');
-  }
 }
