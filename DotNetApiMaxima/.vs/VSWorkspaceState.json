@@ -6,6 +6,6 @@
     "\\Middleware",
     "\\Models"
   ],
-  "SelectedNode": "\\appsettings.json",
+  "SelectedNode": "\\Controllers\\DepartamentoController.cs",
   "PreviewInSolutionExplorer": false
 }
