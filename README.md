@@ -217,7 +217,7 @@ Todas essas dependências foram utilizadas durante instalação do Angular, Node
 └── zone.js@0.11.8
 ```
 
-#### 7° Passo Instalar ou verificar instalação do Angular:
+#### 9° Passo Instalar ou verificar instalação do Angular:
 Certifique-se de que o Node.js e o npm estão instalados no sistema.
 Para instalar no Windows via comando você pode abrir o Terminal ou Windows Power Shell e escrever o comando:
 
@@ -229,14 +229,14 @@ npm install -g @angular/cli@12
 Para conferir se foi instalado:
 ng version
 
-#### 8° Passo: Executar o Backend .NET:
+#### 10° Passo: Executar o Backend .NET:
 Dentro do Vistual Studio 2022
    Usar o Terminal para realizar o comando:
 
 cd .\DotNetApiMaxima
 dotnet run
 
-#### 9° Passo: Executar o Frontend com VS Code:
+#### 11° Passo (FINAL): Executar o Frontend com VS Code:
 Open Folder \DotNetApiMaximacd Frontend
 npm start
 
