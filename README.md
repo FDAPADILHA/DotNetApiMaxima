@@ -132,7 +132,7 @@ No Visual Studio 2022 acesse a pasta
 │   └── create_pkg.sql          # Script para configuração do banco
 ```
 
-Dentro do arquivo "create_pkg.sql" consta outro passo a passo para executar a PKG de criação do ambiente.
+*Dentro do arquivo "create_pkg.sql" consta outro passo a passo para executar a PKG de criação do ambiente.*
 
 #### 5° Passo: Popular os dados nas tabelas:
 
@@ -169,14 +169,65 @@ Link para Download -> https://nodejs.org/pt
 
 Obs: Processo de instação next, next e finish e será instalado a partir de um arquivo que você fez Download e salvou na sua máquina
 
+#### 7° Passo: Observações de iniciação do Backend:
+Verificar se os pacotes já estão instalados no Visual Studio 2022:
+
+- Oracle.EntityFrameworkCore 9.23.60
+- Swashbuckle.AspNetCore.Swagger 7.2.0
+- Swashbuckle.AspNetCore.SwaggerGen 7.2.0
+- Swashbuckle.AspNetCore.SwaggerUI 7.2.0
+- Microsoft.EntityFrameworkC 9.0.0
+- Microsoft.AspNetCore.Authentication.JwtBearer 8.0.0
+
+#### 8° Passo: Observações de iniciação do Frontend:
+Todas essas dependências foram utilizadas durante instalação do Angular, Node.js e desenvolvimento do projeto:
+```plaintext
+├── @angular-devkit/build-angular@12.2.18
+├── @angular/animations@12.2.17
+├── @angular/cdk@12.2.13
+├── @angular/cli@12.2.18
+├── @angular/common@12.2.17
+├── @angular/compiler-cli@12.2.17
+├── @angular/compiler@12.2.17
+├── @angular/core@12.2.17
+├── @angular/forms@12.2.17
+├── @angular/material@12.2.13
+├── @angular/platform-browser-dynamic@12.2.17
+├── @angular/platform-browser@12.2.17
+├── @angular/router@12.2.17
+├── @types/jasmine@3.6.11
+├── @types/jasminewd2@2.0.8
+├── @types/node@12.12.64
+├── bootstrap-icons@1.11.3
+├── codelyzer@6.0.2
+├── jasmine-core@3.6.0
+├── jasmine-spec-reporter@5.0.2
+├── karma-chrome-launcher@3.1.0
+├── karma-coverage-istanbul-reporter@3.0.3
+├── karma-jasmine-html-reporter@1.5.4
+├── karma-jasmine@4.0.1
+├── karma@6.4.4
+├── ngx-bootstrap@6.2.0
+├── protractor@7.0.0
+├── rxjs@6.6.3
+├── ts-node@8.3.0
+├── tslib@2.8.1
+├── tslint@6.1.3
+├── typescript@4.3.5
+└── zone.js@0.11.8
+```
+
 #### 7° Passo Instalar ou verificar instalação do Angular:
 Certifique-se de que o Node.js e o npm estão instalados no sistema.
 Para instalar no Windows via comando você pode abrir o Terminal ou Windows Power Shell e escrever o comando:
 
 npm install -g @angular/cli@12
 
+Dentro do projeto: Open Folder \DotNetApiMaximacd Frontend
+npm install -g @angular/cli@12
+
 Para conferir se foi instalado:
-npm -v
+ng version
 
 #### 8° Passo: Executar o Backend .NET:
 Dentro do Vistual Studio 2022
