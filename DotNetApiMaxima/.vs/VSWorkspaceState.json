@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Config",
-    "\\Controllers",
-    "\\Middleware",
-    "\\Models"
+    "\\Config"
   ],
-  "SelectedNode": "\\Controllers\\DepartamentoController.cs",
   "PreviewInSolutionExplorer": false
 }
