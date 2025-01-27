@@ -4,8 +4,8 @@
   <div class="tools">
     <button class="cadastros-button" (click)="toggleCadastroTools()">Cadastros</button>
     <div class="cadastros-tools" *ngIf="isCadastroVisible">
-      <button class="tool-button">Tool 1</button>
-      <button class="tool-button">Tool 2</button>
+      <button class="tool-button" (click)="goToDepartamento()">Departamentos</button>
+      <button class="tool-button">Produtos</button>
       <button class="tool-button">Tool 3</button>
     </div>
   </div>

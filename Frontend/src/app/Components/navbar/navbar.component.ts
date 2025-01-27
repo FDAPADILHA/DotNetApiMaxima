@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,21 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   isVisible: boolean = true;
   isCadastroVisible: boolean = false; 
+
+  constructor(
+    private router: Router
+  ) {}
+
   toggleNavbar() {
     this.isVisible = !this.isVisible;
   }
 
   toggleCadastroTools() {
     this.isCadastroVisible = !this.isCadastroVisible;
+  }
+
+  goToDepartamento() {
+    this.router.navigate(['/departamento']);
   }
 
   logout() {
