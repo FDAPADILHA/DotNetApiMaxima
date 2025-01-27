@@ -25,10 +25,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { ProdutoComponent } from './Components/produto/produto.component';
+import { ProdutoService } from './produto.service';
 
 
 @NgModule({
-  declarations: [AppComponent, DepartamentoComponent, HeaderComponent, LoginComponent, NavbarComponent],
+  declarations: [AppComponent, DepartamentoComponent, HeaderComponent, LoginComponent, NavbarComponent, ProdutoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,7 +49,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [HttpClientModule, DepartamentoService],
+  providers: [HttpClientModule, DepartamentoService, ProdutoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

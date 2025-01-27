@@ -26,6 +26,10 @@ export class NavbarComponent {
     this.router.navigate(['/departamento']);
   }
 
+  goToProduto() {
+    this.router.navigate(['/produto']);
+  }
+
   logout() {
     console.log("Deslogando do sistema...");
   }
