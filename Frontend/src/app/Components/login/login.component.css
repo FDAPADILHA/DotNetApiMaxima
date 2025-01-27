@@ -1,16 +1,19 @@
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
   height: 100vh;
   background-color: #f4f7fc;
 }
 
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.login-logo {
+  margin-top: -150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  max-width: 100%;
 }
 
 .login-form {
@@ -19,17 +22,37 @@
   gap: 16px;
 }
 
-.action-buttons {
-  display: flex;
-  justify-content: flex-end;
+.login-logo img {
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
-.success-snackbar {
-  background-color: #4caf50;
-  color: white;
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px; 
 }
 
-.error-snackbar {
-  background-color: #f44336;
+.site-maxima {
+  background-color: #0000001F;
   color: white;
+  border: none; 
+  padding: 6px 12px;
+  font-size: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px; 
+}
+
+.site-maxima:hover {
+  background-color: #00D556;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3); 
+}
+
+.site-maxima:focus {
+  outline: none;
 }

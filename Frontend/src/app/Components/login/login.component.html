@@ -1,29 +1,71 @@
 <app-header></app-header>
 
 <div class="login-container">
+
+  <div class="login-logo">
+    <img src="https://maxgestao-pwa.solucoesmaxima.com.br/images/logo-maximatech-vertical.webp" alt="Logo Maximatech">
+  </div>
+
   <mat-card class="login-card">
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
-        
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Login</mat-label>
-          <input matInput type="text" id="login" [(ngModel)]="loginData.login" name="login" required autocomplete="off" #loginInput="ngModel" />
-          <mat-error *ngIf="loginInput.invalid && loginInput.touched">O login é obrigatório</mat-error>
+          <input
+            matInput
+            type="text"
+            id="login"
+            [(ngModel)]="loginData.login"
+            name="login"
+            required
+            autocomplete="off"
+            #loginInput="ngModel"
+          />
+          <mat-error *ngIf="loginInput.invalid && loginInput.touched">
+            O login é obrigatório
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Senha</mat-label>
-          <input matInput type="password" id="senha" [(ngModel)]="loginData.senha" name="senha" required autocomplete="off" #senhaInput="ngModel" />
-          <mat-error *ngIf="senhaInput.invalid && senhaInput.touched">A senha é obrigatória</mat-error>
+          <input
+            matInput
+            type="password"
+            id="senha"
+            [(ngModel)]="loginData.senha"
+            name="senha"
+            required
+            autocomplete="off"
+            #senhaInput="ngModel"
+          />
+          <mat-error *ngIf="senhaInput.invalid && senhaInput.touched">
+            A senha é obrigatória
+          </mat-error>
         </mat-form-field>
 
         <div class="action-buttons">
-          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">Entrar</button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="loginForm.invalid || isLoading"
+          >
+            Entrar
+          </button>
         </div>
       </form>
     </mat-card-content>
   </mat-card>
+
+  <div class="maximatech-link">
+    <button class="site-maxima" onclick="window.open('https://maximatech.com.br', '_blank')">
+      maximatech.com.br
+    </button>
+  </div>
+  
+
+
 </div>
