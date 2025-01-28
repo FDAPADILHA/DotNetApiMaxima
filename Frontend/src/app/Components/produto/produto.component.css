@@ -2,138 +2,139 @@ body, h1, h2, h3, p, ul, ol, li, table {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: 'Roboto', Arial, sans-serif;
     background-color: #f9fafb;
     color: #333;
     line-height: 1.6;
     padding: 20px;
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 1200px;
     margin: 0 auto;
-  }
-  
-  h4 {
+}
+
+h4 {
     color: #4a4a4a;
     font-weight: 600;
     margin-bottom: 20px;
-  }
-  
-  hr {
+}
+
+hr {
     border: 1px solid #e5e7eb;
     margin: 20px 0;
-  }
-  
-  button {
+}
+
+button {
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  button:focus {
+}
+
+button:focus {
     outline: none;
-  }
-  
-  /* Botões personalizados */
-  .custom-btn {
+}
+
+/* Botões personalizados */
+.custom-btn {
     background-color: #4f46e5;
     color: #fff;
     padding: 8px 16px;
     border-radius: 5px;
     border: none;
     font-size: 14px;
-  }
-  
-  .custom-btn:hover {
+}
+
+.custom-btn:hover {
     background-color: #4338ca;
     box-shadow: 0px 3px 8px rgba(79, 70, 229, 0.4);
-  }
-  
-  .btn-outline-info {
+}
+
+.btn-outline-info {
     border: 1px solid #2563eb;
     color: #2563eb;
     padding: 6px 12px;
     border-radius: 5px;
-  }
-  
-  .btn-outline-info:hover {
+}
+
+.btn-outline-info:hover {
     background-color: #2563eb;
     color: #fff;
-  }
-  
-  .btn-outline-danger {
+}
+
+.btn-outline-danger {
     border: 1px solid #dc2626;
     color: #dc2626;
     padding: 6px 12px;
     border-radius: 5px;
-  }
-  
-  .btn-outline-danger:hover {
+}
+
+.btn-outline-danger:hover {
     background-color: #dc2626;
     color: #fff;
-  }
-  
-  /* Tabela */
-  .table {
+}
+
+/* Tabela */
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-  }
-  
-  .table thead tr {
+}
+
+.table thead tr {
     background-color: #f3f4f6;
     text-align: left;
     font-size: 14px;
-  }
-  
-  .table th, .table td {
+}
+
+.table th,
+.table td {
     padding: 12px 15px;
     border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .table tbody tr:hover {
+}
+
+.table tbody tr:hover {
     background-color: #f1f5f9;
-  }
-  
-  .table tbody tr td:last-child {
+}
+
+.table tbody tr td:last-child {
     display: flex;
     gap: 8px;
-  }
-  
-  /* Formulário */
-  form {
+}
+
+/* Formulário */
+form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  form label {
+}
+
+form label {
     font-weight: 500;
     color: #4b5563;
     display: block;
     margin-bottom: 8px;
-  }
-  
-  form input {
+}
+
+form input {
     width: 100%;
     padding: 10px;
     border: 1px solid #d1d5db;
     border-radius: 5px;
     margin-bottom: 16px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  form input:focus {
+}
+
+form input:focus {
     border-color: #4f46e5;
     box-shadow: 0px 0px 4px rgba(79, 70, 229, 0.3);
     outline: none;
-  }
-  
-  form button {
+}
+
+form button {
     width: 100%;
     padding: 10px;
     background-color: #4f46e5;
@@ -142,55 +143,59 @@ body, h1, h2, h3, p, ul, ol, li, table {
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  form button:hover {
+}
+
+form button:hover {
     background-color: #4338ca;
     transform: scale(1.02);
-  }
-  
-  /* Modal */
-  .modal-header {
+}
+
+/* Modal */
+.modal-header {
     background-color: #4f46e5;
     color: #fff;
     padding: 10px 15px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-  }
-  
-  .modal-body {
+}
+
+.modal-body {
     padding: 20px;
     color: #333;
-  }
-  
-  .modal-footer {
+}
+
+.modal-footer {
     padding: 10px 15px;
     text-align: right;
     border-top: 1px solid #e5e7eb;
-  }
-  
-  .modal-footer button {
+}
+
+.modal-footer button {
     padding: 8px 16px;
     border-radius: 5px;
     margin-left: 10px;
-  }
-  
-  .modal-footer .btn-light {
+}
+
+.modal-footer .btn-light {
     background-color: #f3f4f6;
     color: #4b5563;
-  }
-  
-  .modal-footer .btn-light:hover {
+}
+
+.modal-footer .btn-light:hover {
     background-color: #e5e7eb;
-  }
-  
-  .modal-footer .btn-outline-danger {
+}
+
+.modal-footer .btn-outline-danger {
     border: 1px solid #dc2626;
     color: #dc2626;
-  }
-  
-  .modal-footer .btn-outline-danger:hover {
+}
+
+.modal-footer .btn-outline-danger:hover {
     background-color: #dc2626;
     color: #fff;
-  }
-  
+}
+
+
+.mt-3:focus {
+    outline: none;
+}

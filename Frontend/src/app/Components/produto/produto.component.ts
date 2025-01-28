@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProdutoService } from 'src/app/produto.service';
 import { Produto } from 'src/app/Produto';
 
-
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
@@ -17,7 +16,7 @@ export class ProdutoComponent implements OnInit {
   tituloFormulario = '';
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private produtoService: ProdutoService
   ) {}
 
@@ -26,13 +25,24 @@ export class ProdutoComponent implements OnInit {
   }
 
   carregarProdutos(): void {
-    this.produtoService.ListarProdutosTodos().subscribe((dados) => (this.produtos = dados));
+    this.produtoService.ListarProdutosTodos().subscribe(
+      (resultado) => {
+        this.produtos = resultado || [];
+        if (this.produtos.length === 0) {
+          alert('Nenhum produto encontrado.');
+        }
+      },
+      (erro) => {
+        console.error('Erro ao carregar produtos:', erro);
+        alert('Erro ao carregar os produtos. Tente novamente mais tarde.');
+      }
+    );
   }
 
   exibirFormulario(produto = null): void {
     this.formularioVisivel = true;
     this.modoEdicao = !!produto;
-    this.tituloFormulario = produto ? 'Editar Produto' : 'Novo Produto';
+    this.tituloFormulario = produto ? 'Editar Produto' : 'Adicionar novo produto';
 
     this.formulario = this.fb.group({
       codprod: [produto?.codprod || '', [Validators.required]],
@@ -63,8 +73,10 @@ export class ProdutoComponent implements OnInit {
   }
 
   confirmarExclusao(produto): void {
-    if (confirm(`Deseja excluir o produto ${produto.nome}?`)) {
-      this.produtoService.ExcluirProdutos(produto.codigo).subscribe(() => this.carregarProdutos());
+    if (confirm(`Deseja excluir o produto ${produto.descricao}?`)) {
+      this.produtoService.ExcluirProdutos(produto.codprod).subscribe(() =>
+        this.carregarProdutos()
+      );
     }
   }
 

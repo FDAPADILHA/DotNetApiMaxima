@@ -1,85 +1,90 @@
 <app-header></app-header>
-
 <app-navbar></app-navbar>
 
 <div class="container py-5">
-  <div class="mb-3 d-flex justify-content-between align-items-center">
-    <h2>Gerenciar Produtos</h2>
-    <button class="btn btn-primary" (click)="exibirFormulario()">
-      <mat-icon>add</mat-icon> Novo Produto
-    </button>
+  <div *ngIf="!formularioVisivel">
+    <!-- Botão para adicionar novo produto -->
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+      <h2>Gerenciar Produtos</h2>
+      <button type="button" class="btn btn-sm btn-outline-info" (click)="exibirFormulario()">
+        Novo Produto
+      </button>
+    </div>
+
+    <!-- Lista de produtos -->
+    <mat-card class="shadow-sm">
+      <mat-card-content>
+        <table class="table table-bordered table-hover" *ngIf="produtos.length > 0; else semProdutos">
+          <thead class="thead-light">
+            <tr>
+              <th>Código</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produto of produtos">
+              <td>{{ produto.codprod }}</td>
+              <td>{{ produto.descricao }}</td>
+              <td>{{ produto.preco | currency:'BRL' }}</td>
+              <td>
+                <span class="badge" [ngClass]="{'badge-success': produto.status === 'Ativo', 'badge-secondary': produto.status !== 'Ativo'}">
+                  {{ produto.status }}
+                </span>
+              </td>
+              <td>
+                <button mat-button color="primary" (click)="exibirFormulario(produto)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-button color="warn" (click)="confirmarExclusao(produto)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #semProdutos>
+          <p class="text-center text-muted">Nenhum produto encontrado.</p>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
   </div>
 
-  <mat-card class="shadow-sm">
-    <mat-card-content>
-      <table class="table table-bordered table-hover" *ngIf="produtos.length > 0; else semProdutos">
-        <thead class="thead-light">
-          <tr>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Código do Departamento</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let produto of produtos">
-            <td>{{ produto.codprod }}</td>
-            <td>{{ produto.descricao }}</td>
-            <td>{{ produto.preco | currency:'BRL' }}</td>
-            <td>
-              <span class="badge" [ngClass]="{'badge-success': produto.status === 'Ativo', 'badge-secondary': produto.status !== 'Ativo'}">
-                {{ produto.status }}
-              </span>
-            </td>
-            <td>
-              <button mat-button color="primary" (click)="editarProduto(produto)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-button color="warn" (click)="confirmarExclusao(produto)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <ng-template #semProdutos>
-        <p class="text-center text-muted">Nenhum produto encontrado.</p>
-      </ng-template>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<!-- Formulário -->
-<div class="container py-5" *ngIf="formularioVisivel">
-  <mat-card class="shadow-sm">
-    <mat-card-title>{{ tituloFormulario }}</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]="formulario" (ngSubmit)="salvarProduto()">
-        <div class="form-group">
-          <label>Código</label>
-          <input matInput formControlName="codprod" class="form-control" [readonly]="modoEdicao" />
-        </div>
-        <div class="form-group">
-          <label>Descrição</label>
-          <input matInput formControlName="descricao" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>Preço</label>
-          <input matInput type="number" formControlName="preco" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>Status</label>
-          <mat-select formControlName="status">
-            <mat-option value="Ativo">Ativo</mat-option>
-            <mat-option value="Inativo">Inativo</mat-option>
-          </mat-select>
-        </div>
-        <div class="mt-3">
-          <button mat-flat-button color="primary" type="submit">Salvar</button>
-          <button mat-button (click)="fecharFormulario()">Cancelar</button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <!-- Formulário de produto -->
+  <div *ngIf="formularioVisivel">
+    <mat-card class="shadow-sm">
+      <mat-card-title><h2>{{ tituloFormulario }}</h2></mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="formulario" (ngSubmit)="salvarProduto()">
+          <div class="form-group">
+            <label>Código</label>
+            <input matInput formControlName="codprod" class="form-control" [readonly]="modoEdicao" />
+          </div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <input matInput formControlName="descricao" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Preço</label>
+            <input matInput type="number" formControlName="preco" class="form-control" />
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option value="Ativo">Ativo</mat-option>
+                <mat-option value="Inativo">Inativo</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="mt-3">
+            <button mat-flat-button color="primary" type="submit">Salvar</button>
+            <button mat-button (click)="fecharFormulario()">Cancelar</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
